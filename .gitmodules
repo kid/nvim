@@ -1,0 +1,27 @@
+[submodule "pack/lsp/opt/nvim-lsp"]
+	path = pack/lsp/opt/nvim-lsp
+	url = https://github.com/neovim/nvim-lsp.git
+[submodule "pack/lsp/opt/completion-nvim"]
+	path = pack/lsp/opt/completion-nvim
+	url = https://github.com/haorenW1025/completion-nvim.git
+[submodule "pack/lsp/opt/diagnostic-nvim"]
+	path = pack/lsp/opt/diagnostic-nvim
+	url = https://github.com/haorenW1025/diagnostic-nvim.git
+[submodule "pack/editor/opt/vim-commentary"]
+	path = pack/editor/opt/vim-commentary
+	url = https://github.com/tpope/vim-commentary.git
+[submodule "pack/editor/opt/vim-surround"]
+	path = pack/editor/opt/vim-surround
+	url = https://github.com/tpope/vim-surround.git
+[submodule "pack/editor/opt/editorconfig-vim"]
+	path = pack/editor/opt/editorconfig-vim
+	url = https://github.com/editorconfig/editorconfig-vim.git
+[submodule "pack/editor/opt/vim-easymotion"]
+	path = pack/editor/opt/vim-easymotion
+	url = https://github.com/easymotion/vim-easymotion.git
+[submodule "pack/lsp/opt/lsp-status.nvim"]
+	path = pack/lsp/opt/lsp-status.nvim
+	url = https://github.com/wbthomason/lsp-status.nvim.git
+[submodule "pack/style/opt/gruvbox"]
+	path = pack/style/opt/gruvbox
+	url = https://github.com/gruvbox-community/gruvbox.git
