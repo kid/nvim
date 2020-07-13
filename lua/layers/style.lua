@@ -2,7 +2,7 @@ local layer = {}
 local plug = require("core.plug")
 
 function layer.register_plugins()
-	-- plug.add('vim-airline/vim-airline')
+	plug.add('vim-airline/vim-airline')
 	plug.add('gruvbox-community/gruvbox')
 end
 
@@ -62,9 +62,6 @@ function layer.init_config()
 		vim.g.airline_powerline_fonts = 1
 		vim.g["airline#extensions#tabline#enabled"] = 1
 	end
-
-
-	vim.wo.statusline = ""
 end
 
 return layer

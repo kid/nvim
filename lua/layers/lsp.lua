@@ -6,6 +6,8 @@ function layer.register_plugins()
 	plug.add("neovim/nvim-lsp")
 	plug.add("haorenW1025/completion-nvim")
 	plug.add("haorenW1025/diagnostic-nvim")
+	plug.add("hrsh7th/vim-vsnip")
+	plug.add("hrsh7th/vim-vsnip-integ")
 	plug.add("wbthomason/lsp-status.nvim")
 end
 
@@ -16,6 +18,30 @@ function layer.init_config()
 	lsp_status.register_progress()
 
 	vim.g.diagnostic_enable_virtual_text = 1
+	vim.g.completion_enable_snippet = 'vim-vsnip'
+
+	lsp_status.config { kind_labels = vim.g.completion_customize_lsp_label }
+
+	-- if plug.has("vim-airline") then
+		vim.api.nvim_exec(
+			[[
+				function! LspStatus() abort
+					if luaeval('#vim.lsp.buf_get_clients() > 0')
+						return luaeval('require("lsp-status").status()')
+					endif
+
+					return ''
+					-- return luaeval("require('layers.lsp')._get_airline_part()")
+				endfunction
+			]],
+			false
+		)
+
+		vim.fn["airline#parts#define_function"]("c_lsp", "LspStatus")
+		-- vim.fn["airline#parts#define_function"]("c_lsp", "LspStatus")
+		-- vim.fn["airline#parts#define_accent"]("c_lsp", "yellow")
+		vim.g.airline_section_y = vim.fn["airline#section#create_right"]{"c_lsp", "ffenc"}
+	-- end
 end
 
 function layer.register_server(server, config)
@@ -41,22 +67,6 @@ function layer.register_server(server, config)
 	-- 	layer.filetype_servers[v] = server
 	-- end
 
-	-- if plug.has("vim-airline") then
-	-- 	vim.api.nvim_exec(
-	-- 		[[
-	-- 			function! CLspGetAirlinePart() abort
-	-- 				-- return luaeval('require("lsp-status").status()')
-	-- 				return luaeval("require('layers.lsp')._get_airline_part()")
-	-- 			endfunction
-	-- 		]],
-	-- 		false
-	-- 	)
-
-	-- 	vim.fn["airline#parts#define_function"]("c_lsp", "CLspGetAirlinePart")
-	-- 	-- vim.fn["airline#parts#define_function"]("c_lsp", "LspStatus")
-	-- 	vim.fn["airline#parts#define_accent"]("c_lsp", "yellow")
-	-- 	vim.g.airline_section_y = vim.fn["airline#section#create_right"]{"c_lsp", "ffenc"}
-	-- end
 end
 
 --- Get the LSP status line part for vim-airline
