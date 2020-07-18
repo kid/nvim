@@ -55,7 +55,7 @@ function layer.register_server(server, config)
 		lsp_status.on_attach(client)
 	end
 
-	config.capabilities = lsp_status.capabilities
+	config.capabilities = vim.tbl_extend('keep', config.capabilities or {}, lsp_status.capabilities)
 
 	config = vim.tbl_extend("keep", config, server.document_config.default_config)
 
