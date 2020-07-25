@@ -55,3 +55,6 @@
 [submodule "pack/editor/opt/editorconfig-vim"]
 	path = pack/editor/opt/editorconfig-vim
 	url = https://github.com/editorconfig/editorconfig-vim.git
+[submodule "pack/lang/opt/rust.vim"]
+	path = pack/lang/opt/rust.vim
+	url = https://github.com/rust-lang/rust.vim.git

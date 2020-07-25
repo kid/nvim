@@ -1,6 +1,9 @@
 local layer = {}
 
+local plug = require("core.plug")
+
 function layer.register_plugins()
+	plug.add("rust-lang/rust.vim")
 end
 
 function layer.init_config()
