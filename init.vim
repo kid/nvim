@@ -6,7 +6,9 @@ luafile ~/.config/nvim/init.lua
 set complete-=t
 
 autocmd FileType help wincmd L
-autocmd FileType LuaTree setlocal signcolumn=no
+autocmd FileType LuaTree setlocal nowrap signcolumn=no
+autocmd FileType markdown setlocal spell
+autocmd TermOpen * setlocal nonumber norelativenumber nowrap signcolumn=no
 
 map <space><space> :GFiles<cr>
 map <space>, :Buffers<cr>
