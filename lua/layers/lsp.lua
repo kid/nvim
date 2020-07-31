@@ -18,6 +18,7 @@ function layer.init_config()
 	lsp_status.register_progress()
 
 	vim.g.diagnostic_enable_virtual_text = 1
+	vim.g.diagnostic_enable_underline = 1
 	vim.g.completion_enable_auto_paren = 1
 	vim.g.completion_enable_snippet = 'vim-vsnip'
 
