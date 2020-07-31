@@ -1,5 +1,5 @@
 nmap <BS> <C-W
-set guifont=Fira\ Code\ Nerd\ Font:12
+set guifont=Fira\ Code\ Nerd\ Font:h12
 
 luafile ~/.config/nvim/init.lua
 
@@ -43,7 +43,6 @@ smap <expr> <S-Tab> vsnip#available(-1) ? '<Plug>(vsnip-jump-prev)'      : '<S-T
 " smap <C-j> <Plug>(vsnip-jump-next)
 " imap <C-k> <Plug>(vsnip-jump-prev)
 " smap <C-k> <Plug>(vsnip-jump-prev)
-
 
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
 nnoremap <silent> gD <cmd>lua vim.lsp.buf.definition()<CR>
@@ -108,11 +107,10 @@ let g:completion_customize_lsp_label = {
       \ 'Interface': ' [interface]'
       \}
 
-call sign_define("LspDiagnosticsErrorSign", {"text" : ">>", "texthl" : "LspDiagnosticsError"})
-call sign_define("LspDiagnosticsWarningSign", {"text" : "⚡", "texthl" : "LspDiagnosticsWarning"})
-call sign_define("LspDiagnosticsInformationSign", {"text" : "", "texthl" : "LspDiagnosticsInformation"})
-call sign_define("LspDiagnosticsHintSign", {"text" : "", "texthl" : "LspDiagnosticsWarning"})
-
+highlight! link LspDiagnosticsUnderlineError CocErrorHighlight
+highlight! link LspDiagnosticsUnderlineHint CocHintHighlight
+highlight! link LspDiagnosticsUnderlineInfo CocInfoHighlight
+highlight! link LspDiagnosticsUnderlineWarning CocWarningHighlight
 
 nnoremap <C-n> :LuaTreeToggle<CR>
 nnoremap <leader>r :LuaTreeRefresh<CR>
