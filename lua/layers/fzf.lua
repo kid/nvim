@@ -8,7 +8,6 @@ function layer.register_plugins()
 end
 
 function layer.init_config()
-	vim.g.fzf_buffers_jump = 1
 	vim.g.fzf_preview_window = ''
 end
 
