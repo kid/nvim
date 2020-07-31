@@ -10,6 +10,9 @@ autocmd FileType LuaTree setlocal nowrap signcolumn=no
 autocmd FileType markdown setlocal spell
 autocmd TermOpen * setlocal nonumber norelativenumber nowrap signcolumn=no
 
+let mapleader = "\<Space>"
+let maplocalleader = "\\"
+
 map <space><space> :GFiles<cr>
 map <space>, :Buffers<cr>
 
