@@ -115,3 +115,15 @@ highlight! link LspDiagnosticsUnderlineWarning CocWarningHighlight
 nnoremap <C-n> :LuaTreeToggle<CR>
 nnoremap <leader>r :LuaTreeRefresh<CR>
 nnoremap <leader>n :LuaTreeFindFile<CR>
+
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+
+augroup highlight_yank
+    autocmd!
+    autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank("IncSearch", 1000)
+augroup END
+
+" set sw=2
+" set tw=2
+" set expandtab
