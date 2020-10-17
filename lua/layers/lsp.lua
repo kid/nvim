@@ -66,7 +66,6 @@ function layer.register_server(server, config)
 	-- for _, v in pairs(config.filetypes) do
 	-- 	layer.filetype_servers[v] = server
 	-- end
-
 end
 
 return layer
