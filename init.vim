@@ -65,6 +65,15 @@ map <LocalLeader><LocalLeader> <Plug>(easymotion-prefix)
 map  <LocalLeader><LocalLeader>w <Plug>(easymotion-bd-w)
 nmap <LocalLeader><LocalLeader>w <Plug>(easymotion-overwin-w)
 
+" Navigation between windows
+nnoremap <silent> <C-h> <C-w>h
+nnoremap <silent> <C-j> <C-w>j
+nnoremap <silent> <C-k> <C-w>k
+nnoremap <silent> <C-l> <C-w>l
+
+cnoremap <C-a> <Home>
+cnoremap <C-e> <End>
+
 " Using floating windows of Neovim to start fzf
 if has('nvim-0.4.0')
   " let $FZF_DEFAULT_OPTS .= '--color=bg:#20242C --border --layout=reverse'
@@ -128,8 +137,3 @@ augroup highlight_yank
     autocmd!
     autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank("IncSearch", 1000)
 augroup END
-
-
-" set sw=2
-" set tw=2
-" set expandtab
