@@ -24,18 +24,20 @@ end
 
 local function call_on_layers(func_name)
   for _, v in ipairs(layer.layers) do
-    local ok, err = xpcall(v.module[func_name], err_handler)
-    if not ok then
-      log(" ")
-      log.set_highlight("WarningMsg")
-      log("Error while loading layer " .. v.name .. " / " .. func_name)
-      log("================================================================================")
-      log.set_highlight("None")
-      log(err.err)
-      log.set_highlight("WarningMsg")
-      log("================================================================================")
-      log.set_highlight("None")
-      log(err.traceback)
+    if v.module[func_name] then
+      local ok, err = xpcall(v.module[func_name], err_handler)
+      if not ok then
+        log(" ")
+        log.set_highlight("WarningMsg")
+        log("Error while loading layer " .. v.name .. " / " .. func_name)
+        log("================================================================================")
+        log.set_highlight("None")
+        log(err.err)
+        log.set_highlight("WarningMsg")
+        log("================================================================================")
+        log.set_highlight("None")
+        log(err.traceback)
+      end
     end
   end
 end

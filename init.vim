@@ -47,6 +47,8 @@ smap <expr> <S-Tab> vsnip#available(-1) ? '<Plug>(vsnip-jump-prev)'      : '<S-T
 " imap <C-k> <Plug>(vsnip-jump-prev)
 " smap <C-k> <Plug>(vsnip-jump-prev)
 
+nnoremap <silent> <leader>b :BufferLinePick<CR>
+
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
 nnoremap <silent> gD <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
