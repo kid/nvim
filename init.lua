@@ -1,3 +1,5 @@
+-- require('plugins')
+
 local reload = require('core.reload')
 reload.unload_user_modules()
 

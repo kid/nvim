@@ -1,71 +1,58 @@
 local layer = {}
 
-local plug = require("core.plug")
-
-function layer.register_plugins()
-	plug.add("neovim/nvim-lsp")
-	plug.add("nvim-lua/completion-nvim")
-	plug.add("nvim-lua/diagnostic-nvim")
-	plug.add("nvim-lua/lsp-status.nvim")
-	plug.add("hrsh7th/vim-vsnip")
-	plug.add("hrsh7th/vim-vsnip-integ")
+function layer.plugins(use)
+  use "neovim/nvim-lsp"
+  use "nvim-lua/completion-nvim"
+  use "nvim-lua/lsp-status.nvim"
+  use "nvim-lua/lsp_extensions.nvim"
+  use "hrsh7th/vim-vsnip"
+  use "hrsh7th/vim-vsnip-integ"
 end
 
 function layer.init_config()
-	vim.o.completeopt = "menuone,noinsert,noselect"
+  vim.o.completeopt = "menuone,noinsert,noselect"
 
-	local lsp_status = require("lsp-status")
-	lsp_status.register_progress()
+  local lsp_status = require("lsp-status")
+  lsp_status.register_progress()
 
-	vim.g.diagnostic_enable_virtual_text = 1
-	vim.g.diagnostic_enable_underline = 1
-	vim.g.completion_enable_auto_paren = 1
-	vim.g.completion_enable_snippet = 'vim-vsnip'
+  vim.g.completion_enable_auto_paren = 1
+  vim.g.completion_enable_snippet = 'vim-vsnip'
 
-	lsp_status.config { kind_labels = vim.g.completion_customize_lsp_label }
+  lsp_status.config { kind_labels = vim.g.completion_customize_lsp_label }
 
-	-- if plug.has("vim-airline") then
-		vim.api.nvim_exec(
-			[[
-				function! LspStatus() abort
-					if luaeval('#vim.lsp.buf_get_clients() > 0')
-						return luaeval('require("lsp-status").status()')
-					endif
+    vim.api.nvim_exec(
+      [[
+        function! LspStatus() abort
+          if luaeval('#vim.lsp.buf_get_clients() > 0')
+            return luaeval('require("lsp-status").status()')
+          endif
 
-					return ''
-				endfunction
-			]],
-			false
-		)
+          return ''
+        endfunction
+      ]],
+      false
+    )
 
-		vim.fn["airline#parts#define_function"]("c_lsp", "LspStatus")
-		-- vim.fn["airline#parts#define_accent"]("c_lsp", "yellow")
-		vim.g.airline_section_y = vim.fn["airline#section#create_right"]{"c_lsp", "ffenc"}
-	-- end
+    -- vim.fn["airline#parts#define_function"]("c_lsp", "LspStatus")
+    -- vim.g.airline_section_y = vim.fn["airline#section#create_right"]{"c_lsp", "ffenc"}
 end
 
 function layer.register_server(server, config)
-	local lsp_status = require("lsp-status")
-	local completion = require("completion")
-	local diagnostic = require("diagnostic")
+  local lsp_status = require("lsp-status")
+  local completion = require("completion")
 
-	config = config or {}
+  config = config or {}
 
-	config.on_attach = function(client, bufnr)
-		completion.on_attach(client)
-		diagnostic.on_attach(client, bufnr)
-		lsp_status.on_attach(client)
-	end
+  config.on_attach = function(client)
+    completion.on_attach(client)
+    lsp_status.on_attach(client)
+  end
 
-	config.capabilities = vim.tbl_extend('keep', config.capabilities or {}, lsp_status.capabilities)
+  config.capabilities = vim.tbl_extend('keep', config.capabilities or {}, lsp_status.capabilities)
 
-	config = vim.tbl_extend("keep", config, server.document_config.default_config)
+  config = vim.tbl_extend("keep", config, server.document_config.default_config)
 
-	server.setup(config)
-
-	-- for _, v in pairs(config.filetypes) do
-	-- 	layer.filetype_servers[v] = server
-	-- end
+  server.setup(config)
 end
 
 return layer

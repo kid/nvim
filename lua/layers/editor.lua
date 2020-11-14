@@ -1,19 +1,15 @@
 local layer = {}
 
-local plug = require("core.plug")
-
-local log = require("core.log")
-
-function layer.register_plugins()
-	plug.add("tpope/vim-commentary")
-	plug.add("tpope/vim-surround")
-	plug.add("editorconfig/editorconfig-vim")
-	plug.add("easymotion/vim-easymotion")
+function layer.plugins(use)
+  use "tpope/vim-commentary"
+  use "tpope/vim-surround"
+  use "editorconfig/editorconfig-vim"
+  use "easymotion/vim-easymotion"
 end
 
 function layer.init_config()
-	vim.o.shortmess = vim.o.shortmess .. "c"
-	vim.o.swapfile = false
+  vim.o.shortmess = vim.o.shortmess .. "c"
+  vim.o.swapfile = false
 end
 
 return layer

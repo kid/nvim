@@ -1,14 +1,12 @@
 local layer = {}
 
-local plug = require("core.plug")
-
-function layer.register_plugins()
-	plug.add("junegunn/fzf")
-	plug.add("junegunn/fzf.vim")
+function layer.plugins(use)
+  use "junegunn/fzf"
+  use "junegunn/fzf.vim"
 end
 
 function layer.init_config()
-	vim.g.fzf_preview_window = ''
+  vim.g.fzf_preview_window = ''
 end
 
 return layer

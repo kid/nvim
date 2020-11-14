@@ -9,11 +9,14 @@ autocmd FileType help wincmd L
 autocmd FileType LuaTree setlocal nowrap signcolumn=no
 autocmd FileType markdown setlocal spell
 autocmd TermOpen * setlocal nonumber norelativenumber nowrap signcolumn=no
+" autocmd FileType rust lua require'lsp_extensions'.inlay_hints{}
+
+autocmd BufEnter,BufWinEnter,TabEnter *.rs lua require'lsp_extensions'.inlay_hints{}
 
 let mapleader = "\<Space>"
 let maplocalleader = "\\"
 
-map <space><space> :GFiles<cr>
+map <leader><leader> :GitFiles<cr>
 map <space>, :Buffers<cr>
 
 " Mapping selecting mappings
@@ -58,6 +61,7 @@ nnoremap <leader>cf     <cmd>lua vim.lsp.buf.formatting()<CR>
 nnoremap <leader>cr     <cmd>lua vim.lsp.buf.rename()<CR>
 
 " Move to word
+map <LocalLeader><LocalLeader> <Plug>(easymotion-prefix)
 map  <LocalLeader><LocalLeader>w <Plug>(easymotion-bd-w)
 nmap <LocalLeader><LocalLeader>w <Plug>(easymotion-overwin-w)
 
@@ -107,10 +111,10 @@ let g:completion_customize_lsp_label = {
       \ 'Interface': ' [interface]'
       \}
 
-highlight! link LspDiagnosticsUnderlineError CocErrorHighlight
-highlight! link LspDiagnosticsUnderlineHint CocHintHighlight
-highlight! link LspDiagnosticsUnderlineInfo CocInfoHighlight
-highlight! link LspDiagnosticsUnderlineWarning CocWarningHighlight
+" highlight! link LspDiagnosticsUnderlineError CocErrorHighlight
+" highlight! link LspDiagnosticsUnderlineHint CocHintHighlight
+" highlight! link LspDiagnosticsUnderlineInfo CocInfoHighlight
+" highlight! link LspDiagnosticsUnderlineWarning CocWarningHighlight
 
 nnoremap <C-n> :LuaTreeToggle<CR>
 nnoremap <leader>r :LuaTreeRefresh<CR>
@@ -118,11 +122,13 @@ nnoremap <leader>n :LuaTreeFindFile<CR>
 
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
+set foldlevelstart=20
 
 augroup highlight_yank
     autocmd!
     autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank("IncSearch", 1000)
 augroup END
+
 
 " set sw=2
 " set tw=2

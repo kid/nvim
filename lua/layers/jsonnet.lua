@@ -1,9 +1,7 @@
 local layer = {}
 
-local plug = require("core.plug")
-
-function layer.register_plugins()
-	plug.add("google/vim-jsonnet")
+function layer.plugins(use)
+  use "google/vim-jsonnet"
 end
 
 function layer.init_config()
