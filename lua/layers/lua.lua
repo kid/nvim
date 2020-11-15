@@ -2,10 +2,10 @@ local layer = {}
 
 function layer.init_config()
   local lsp = require("layers.lsp")
-  local nvim_lsp = require("nvim_lsp")
+  local lspconfig = require("lspconfig")
 
   lsp.register_server(
-  nvim_lsp.sumneko_lua,
+  lspconfig.sumneko_lua,
     {
       settings = {
         Lua = {

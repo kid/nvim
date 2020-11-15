@@ -2,7 +2,7 @@ local layer = {}
 
 function layer.init_config()
   local lsp = require("layers.lsp")
-  local nvim_lsp = require("nvim_lsp")
+  local lspconfig = require("lspconfig")
 
   local config = {}
 
@@ -10,7 +10,7 @@ function layer.init_config()
     kubernetes = "/*"
   }
 
-  lsp.register_server(nvim_lsp.yamlls, config)
+  lsp.register_server(lspconfig.yamlls, config)
 end
 
 return layer

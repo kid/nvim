@@ -1,7 +1,7 @@
 local layer = {}
 
 function layer.plugins(use)
-  use "neovim/nvim-lsp"
+  use "neovim/nvim-lspconfig"
   use "nvim-lua/completion-nvim"
   use "nvim-lua/lsp-status.nvim"
   use "nvim-lua/lsp_extensions.nvim"

@@ -2,9 +2,9 @@ local layer = {}
 
 function layer.init_config()
   local lsp = require("layers.lsp")
-  local nvim_lsp = require("nvim_lsp")
-  local configs = require("nvim_lsp/configs")
-  local util = require("nvim_lsp/util")
+  local lspconfig = require("lspconfig")
+  local configs = require("lspconfig/configs")
+  local util = require("lspconfig/util")
 
   local server_name = "javascript_typescript_langserver"
   local bin_name = "javascript-typescript-stdio"
@@ -18,9 +18,7 @@ function layer.init_config()
     };
   };
 
-  lsp.register_server(nvim_lsp.javascript_typescript_langserver)
-
-  -- lsp.register_server(nvim_lsp.flow)
+  lsp.register_server(lspconfig.javascript_typescript_langserver)
 end
 
 return layer
