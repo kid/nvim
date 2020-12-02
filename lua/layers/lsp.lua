@@ -20,21 +20,21 @@ function layer.init_config()
 
   lsp_status.config { kind_labels = vim.g.completion_customize_lsp_label }
 
-    vim.api.nvim_exec(
-      [[
-        function! LspStatus() abort
-          if luaeval('#vim.lsp.buf_get_clients() > 0')
-            return luaeval('require("lsp-status").status()')
-          endif
+  vim.api.nvim_exec(
+    [[
+      function! LspStatus() abort
+        if luaeval('#vim.lsp.buf_get_clients() > 0')
+          return luaeval('require("lsp-status").status()')
+        endif
 
-          return ''
-        endfunction
-      ]],
-      false
-    )
+        return ''
+      endfunction
+    ]],
+    false
+  )
 
-    -- vim.fn["airline#parts#define_function"]("c_lsp", "LspStatus")
-    -- vim.g.airline_section_y = vim.fn["airline#section#create_right"]{"c_lsp", "ffenc"}
+  vim.fn["airline#parts#define_function"]("c_lsp", "LspStatus")
+  vim.g.airline_section_y = vim.fn["airline#section#create_right"]{"c_lsp", "ffenc"}
 end
 
 function layer.register_server(server, config)
