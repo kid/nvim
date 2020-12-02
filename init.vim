@@ -1,7 +1,7 @@
 nmap <BS> <C-W
 set guifont=Fira\ Code\ Nerd\ Font:h12
 
-luafile ~/.config/nvim/init.lua
+luafile ~/.config/nvim/config.lua
 
 set complete-=t
 
