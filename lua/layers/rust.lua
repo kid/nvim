@@ -9,7 +9,18 @@ function layer.init_config()
   local lsp = require("layers.lsp")
   local lspconfig = require("lspconfig")
 
-  lsp.register_server(lspconfig.rust_analyzer)
+  lsp.register_server(lspconfig.rust_analyzer, {
+    settings = {
+      ["rust-analyzer"] = {
+        cargo = {
+          loadOutDirsFromCheck = true,
+        },
+        procMacro = {
+          enable = true,
+        },
+      },
+    },
+  })
 end
 
 return layer
