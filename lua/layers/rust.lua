@@ -15,6 +15,11 @@ function layer.init_config()
         cargo = {
           loadOutDirsFromCheck = true,
         },
+        rustfmt = {
+          overrideCommand = {
+            "rustup", "run", "nightly", "--", "rustfmt", "--edition", "2018", "--",
+          },
+        },
         procMacro = {
           enable = true,
         },
