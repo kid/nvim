@@ -85,7 +85,7 @@ cnoremap <C-e> <End>
 " Using floating windows of Neovim to start fzf
 if has('nvim-0.4.0')
   " let $FZF_DEFAULT_OPTS .= '--color=bg:#20242C --border --layout=reverse'
-  let $FZF_DEFAULT_OPTS .= '--border --layout=reverse'
+  let $FZF_DEFAULT_OPTS .= '--layout=reverse'
 
   " function! FloatingFZF()
   "   let width = float2nr(&columns * 0.9)

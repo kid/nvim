@@ -7,16 +7,30 @@ function layer.plugins(use)
   use "nvim-lua/lsp_extensions.nvim"
   use "hrsh7th/vim-vsnip"
   use "hrsh7th/vim-vsnip-integ"
+  use {
+    "ojroques/nvim-lspfuzzy",
+    requires = {
+      "junegunn/fzf",
+      "junegunn/fzf.vim",
+    }
+  }
 end
 
 function layer.init_config()
   vim.o.completeopt = "menuone,noinsert,noselect"
 
+  require("lspfuzzy").setup{
+    fzf_preview = {
+      'right:+{2}-/2:noborder'
+    },
+  }
+
   local lsp_status = require("lsp-status")
   lsp_status.register_progress()
 
+
   vim.g.completion_enable_auto_paren = 1
-  vim.g.completion_enable_snippet = 'vim-vsnip'
+  vim.g.completion_enable_snippet = "vim-vsnip"
 
   lsp_status.config { kind_labels = vim.g.completion_customize_lsp_label }
 
@@ -48,7 +62,7 @@ function layer.register_server(server, config)
     lsp_status.on_attach(client)
   end
 
-  config.capabilities = vim.tbl_extend('keep', config.capabilities or {}, lsp_status.capabilities)
+  config.capabilities = vim.tbl_extend("keep", config.capabilities or {}, lsp_status.capabilities)
 
   config = vim.tbl_extend("keep", config, server.document_config.default_config)
 
