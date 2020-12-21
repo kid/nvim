@@ -55,6 +55,14 @@ smap <expr> <S-Tab> vsnip#available(-1) ? '<Plug>(vsnip-jump-prev)'      : '<S-T
 
 nnoremap <silent> <leader>b :BufferLinePick<CR>
 
+nnoremap <silent>tn :tabnew<CR>
+nnoremap <silent>t[ :tabprev<CR>
+nnoremap <silent>t] :tabnext<CR>
+nnoremap <silent>b[ :BufferLineCyclePrev<CR>
+nnoremap <silent>b] :BufferLineCycleNext<CR>
+nnoremap <silent>d[ <cmd>lua vim.lsp.diagnostic.goto_prev()
+nnoremap <silent>d] <cmd>lua vim.lsp.diagnostic.goto_next()
+
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
 nnoremap <silent> gD <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
