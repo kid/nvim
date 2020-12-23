@@ -151,5 +151,5 @@ set foldlevelstart=20
 
 augroup highlight_yank
     autocmd!
-    autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank("IncSearch", 1000)
+    autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank()
 augroup END
