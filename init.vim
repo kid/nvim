@@ -153,3 +153,8 @@ augroup highlight_yank
     autocmd!
     autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank()
 augroup END
+
+set sw=2
+set ts=2
+set expandtab
+
