@@ -14,8 +14,8 @@ RUN curl -SL https://aur.archlinux.org/cgit/aur.git/snapshot/yay-bin.tar.gz | \
     makepkg -si --noconfirm && \
     rm -rf yay-bin
 
-RUN yay -S neovim-git --noconfirm
+RUN yay -S neovim-nightly --noconfirm
 
 COPY --chown=1000:1000 ./ ./.config/nvim/
 
-CMD ["/bin/bash]
+CMD ["/bin/bash"]
