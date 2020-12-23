@@ -22,7 +22,7 @@ vnoremap <silent> <leader> :<c-u>WhichKeyVisual '<Space>'<CR>
 nnoremap <silent> <localleader> :<c-u>WhichKey '\'<CR>
 vnoremap <silent> <localleader> :<c-u>WhichKeyVisual '\'<CR>
 
-map <leader><leader> :GitFiles<cr>
+map <leader><leader> :Files<cr>
 map <space>, :Buffers<cr>
 
 " Mapping selecting mappings
