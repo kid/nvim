@@ -25,14 +25,14 @@ function layer.init_config()
     },
   }
 
-  local lsp_status = require("lsp-status")
-  lsp_status.register_progress()
-
+  -- local lsp_status = require("lsp-status")
+  -- lsp_status.register_progress()
 
   vim.g.completion_enable_auto_paren = 1
   vim.g.completion_enable_snippet = "vim-vsnip"
+  vim.g.completion_timer_cycle = 200
 
-  lsp_status.config { kind_labels = vim.g.completion_customize_lsp_label }
+  -- lsp_status.config { kind_labels = vim.g.completion_customize_lsp_label }
 
   vim.api.nvim_exec(
     [[
@@ -47,8 +47,8 @@ function layer.init_config()
     false
   )
 
-  vim.fn["airline#parts#define_function"]("c_lsp", "LspStatus")
-  vim.g.airline_section_y = vim.fn["airline#section#create_right"]{"c_lsp", "ffenc"}
+  -- vim.fn["airline#parts#define_function"]("c_lsp", "LspStatus")
+  -- vim.g.airline_section_y = vim.fn["airline#section#create_right"]{"c_lsp", "ffenc"}
 end
 
 function layer.register_server(server, config)
