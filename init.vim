@@ -173,7 +173,7 @@ let g:completion_customize_lsp_label = {
 
 " nnoremap <C-n> :LuaTreeToggle<CR>
 nnoremap <leader>r :LuaTreeRefresh<CR>
-nnoremap <leader>n :LuaTreeFindToggle<CR>
+nnoremap <leader>n :LuaTreeToggle<CR>
 
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
