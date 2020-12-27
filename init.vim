@@ -24,6 +24,10 @@ vnoremap <silent> <localleader> :<c-u>WhichKeyVisual '\'<CR>
 
 map <leader><leader> :Files<cr>
 map <space>, :Buffers<cr>
+map <space>h :Helptags<cr>
+
+imap jk <Esc>
+nmap <C-s> <cmd>w<CR>
 
 " Mapping selecting mappings
 nmap <leader><tab> <plug>(fzf-maps-n)
