@@ -42,6 +42,33 @@ imap <c-x><c-l> <plug>(fzf-complete-line)
 imap <tab>   <Plug>(completion_smart_tab)
 imap <s-tab> <Plug>(completion_smart_s_tab)
 
+" Copy til end if one, like C and D
+nnoremap Y y$
+
+" System copy paste
+nnoremap <Leader>y "+y
+nnoremap <Leader>Y "+y$
+vnoremap <Leader>y "+y
+
+nnoremap <Leader>p "+p
+nnoremap <Leader>P "+P
+vnoremap <Leader>p "+p
+
+" vim-cutlass bindings
+nnoremap m d
+xnoremap m d
+nnoremap mm dd
+nnoremap M D
+
+nmap <c-n> <plug>(YoinkPostPasteSwapBack)
+nmap <c-p> <plug>(YoinkPostPasteSwapForward)
+
+nmap p <plug>(YoinkPaste_p)
+nmap P <plug>(YoinkPaste_P)
+
+nmap [y <plug>(YoinkRotateBack)
+nmap ]y <plug>(YoinkRotateForward)
+
 " Expand
 " imap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'
 " smap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'
@@ -144,9 +171,9 @@ let g:completion_customize_lsp_label = {
 " highlight! link LspDiagnosticsUnderlineInfo CocInfoHighlight
 " highlight! link LspDiagnosticsUnderlineWarning CocWarningHighlight
 
-nnoremap <C-n> :LuaTreeToggle<CR>
+" nnoremap <C-n> :LuaTreeToggle<CR>
 nnoremap <leader>r :LuaTreeRefresh<CR>
-nnoremap <leader>n :LuaTreeFindFile<CR>
+nnoremap <leader>n :LuaTreeFindToggle<CR>
 
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
