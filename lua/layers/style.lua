@@ -47,7 +47,7 @@ function layer.init_config()
 
   -- Incremental search and search/replace
   vim.o.incsearch = true
-  vim.o.inccommand = "split"
+  vim.o.inccommand = "nosplit"
 
   -- Case insensitive search if the query is lowercase
   vim.o.ignorecase = true
