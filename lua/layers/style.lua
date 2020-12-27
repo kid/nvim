@@ -2,7 +2,7 @@ local layer = {}
 
 function layer.plugins(use)
   use "gruvbox-community/gruvbox"
-  use "vim-airline/vim-airline"
+  use "itchyny/lightline.vim"
 end
 
 function layer.init_config()
@@ -56,10 +56,12 @@ function layer.init_config()
   -- Highlight while searching
   vim.o.hlsearch = true
 
-  if string.find(vim.o.rtp, 'vim-airline') then
-    -- Use vim-airline's tabline, and enable powerline symbols
-    vim.g.airline_powerline_fonts = 1
-  end
+  vim.g.lightline = {
+    colorscheme = 'gruvbox',
+    enable = {
+      tabline = 0,
+    },
+  }
 end
 
 return layer
