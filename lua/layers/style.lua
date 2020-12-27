@@ -10,7 +10,7 @@ function layer.init_config()
   vim.api.nvim_command("colorscheme gruvbox")
 
   -- Faster updatetime for quick CursorHold updates
-  vim.o.updatetime = 250
+  vim.o.updatetime = 100
 
   -- Faster redrawing
   vim.o.lazyredraw = true
