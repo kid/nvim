@@ -49,6 +49,8 @@ function layer.init_config()
   vim.o.incsearch = true
   vim.o.inccommand = "nosplit"
 
+  vim.o.hlsearch = false
+
   -- Case insensitive search if the query is lowercase
   vim.o.ignorecase = true
   vim.o.smartcase = true
