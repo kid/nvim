@@ -13,7 +13,14 @@ function layer.init_config()
           },
         },
         runtime = {
-          version = "LuaJIT",
+          -- version = "LuaJIT",
+          path = vim.split(package.path, ';'),
+        },
+        workspace = {
+          library = {
+            [vim.fn.expand('$VIMRUNTIME/lua')] = true,
+            [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
+          }
         },
       },
     },
