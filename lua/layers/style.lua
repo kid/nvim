@@ -2,7 +2,15 @@ local layer = {}
 
 function layer.plugins(use)
   use "gruvbox-community/gruvbox"
-  use "itchyny/lightline.vim"
+  use {
+    "hoob3rt/lualine.nvim",
+    config = function()
+      local lualine = require('lualine')
+      lualine.theme = 'gruvbox'
+      lualine.extensions = { 'fzf' }
+      lualine.status()
+    end
+  }
 end
 
 function layer.init_config()
@@ -58,12 +66,6 @@ function layer.init_config()
   -- Highlight while searching
   vim.o.hlsearch = true
 
-  vim.g.lightline = {
-    colorscheme = 'gruvbox',
-    enable = {
-      tabline = 0,
-    },
-  }
 end
 
 return layer
