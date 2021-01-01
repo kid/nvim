@@ -3,7 +3,19 @@ local layer = {}
 function layer.plugins(use)
   use "gruvbox-community/gruvbox"
   use {
+    "itchyny/lightline.vim",
+    config = function ()
+      vim.g.lightline = {
+        colorscheme = 'gruvbox',
+        enable = {
+          tabline = 0,
+        }
+      }
+    end
+  }
+  use {
     "hoob3rt/lualine.nvim",
+    disable = true,
     config = function()
       local lualine = require('lualine')
       lualine.theme = 'gruvbox'
