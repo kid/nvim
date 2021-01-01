@@ -6,7 +6,7 @@ luafile ~/.config/nvim/config.lua
 set complete-=t
 
 autocmd FileType help wincmd L
-autocmd FileType LuaTree setlocal nowrap signcolumn=no
+autocmd FileType NvimTree setlocal nowrap signcolumn=no
 autocmd FileType markdown setlocal spell
 autocmd TermOpen * setlocal nonumber norelativenumber nowrap signcolumn=no
 " autocmd FileType rust lua require'lsp_extensions'.inlay_hints{}
@@ -171,9 +171,8 @@ let g:completion_customize_lsp_label = {
 " highlight! link LspDiagnosticsUnderlineInfo CocInfoHighlight
 " highlight! link LspDiagnosticsUnderlineWarning CocWarningHighlight
 
-" nnoremap <C-n> :LuaTreeToggle<CR>
-nnoremap <leader>r :LuaTreeRefresh<CR>
-nnoremap <leader>n :LuaTreeToggle<CR>
+nnoremap <leader>r :NvimTreeRefresh<CR>
+nnoremap <leader>n :NvimTreeToggle<CR>
 
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
