@@ -54,7 +54,13 @@ function layer.finish_layer_registration()
           v.module.plugins(use)
         end
       end
-    end
+    end,
+    config = {
+      display = {
+        -- Enable non interactive mode when running in headless mode
+        non_interactive = vim.tbl_isempty(vim.api.nvim_list_uis())
+      }
+    }
   }
 
   reload.update_package_path()
