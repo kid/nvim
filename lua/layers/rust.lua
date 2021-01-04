@@ -16,6 +16,9 @@ function layer.init_config()
     capabilities = capabilities,
     settings = {
       ["rust-analyzer"] = {
+        assist = {
+          importMergeBehavior = "last",
+        },
         cargo = {
           loadOutDirsFromCheck = true,
         },
