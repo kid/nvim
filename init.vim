@@ -4,7 +4,7 @@ set guifont=Fira\ Code\ Nerd\ Font:h12
 luafile ~/.config/nvim/config.lua
 
 set complete-=t
-set timeoutlen=200
+set timeoutlen=500
 
 autocmd FileType help wincmd L
 autocmd FileType NvimTree setlocal nowrap signcolumn=no
