@@ -12,6 +12,9 @@ autocmd FileType markdown setlocal spell
 autocmd TermOpen * setlocal nonumber norelativenumber nowrap signcolumn=no
 " autocmd FileType rust lua require'lsp_extensions'.inlay_hints{}
 
+" Reload files after C-Z
+autocmd VimResume * silent! checktime
+
 autocmd BufEnter,BufWinEnter,TabEnter *.rs lua require'lsp_extensions'.inlay_hints{}
 
 let mapleader = "\<Space>"
