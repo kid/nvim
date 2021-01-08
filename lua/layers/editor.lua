@@ -13,7 +13,9 @@ function layer.plugins(use)
   -- TODO try bfredl/nvim-miniyank instead?
   -- or https://github.com/nvim-telescope/telescope.nvim/issues/255#issuecomment-731361724
   use "svermeulen/vim-yoink"
-  end
+
+  use "unblevable/quick-scope"
+end
 
 function layer.init_config()
   vim.o.shortmess = vim.o.shortmess .. "c"
