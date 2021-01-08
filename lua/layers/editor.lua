@@ -11,6 +11,7 @@ function layer.plugins(use)
   use "liuchengxu/vim-which-key"
   use "svermeulen/vim-cutlass"
   -- TODO try bfredl/nvim-miniyank instead?
+  -- or https://github.com/nvim-telescope/telescope.nvim/issues/255#issuecomment-731361724
   use "svermeulen/vim-yoink"
   end
 
