@@ -32,6 +32,7 @@ map <space>h :Helptags<cr>
 
 imap jk <Esc>
 nmap <C-s> <cmd>w<CR>
+imap <C-s> <Esc><cmd>w<CR>
 
 " Mapping selecting mappings
 nmap <leader><tab> <plug>(fzf-maps-n)
