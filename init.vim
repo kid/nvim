@@ -1,4 +1,3 @@
-nmap <BS> <C-W
 set guifont=Fira\ Code\ Nerd\ Font:h12
 
 luafile ~/.config/nvim/config.lua
@@ -12,7 +11,7 @@ autocmd FileType markdown setlocal spell
 autocmd TermOpen * setlocal nonumber norelativenumber nowrap signcolumn=no
 " autocmd FileType rust lua require'lsp_extensions'.inlay_hints{}
 
-" Reload files after C-Z
+" Reload files after C-z
 autocmd VimResume * silent! checktime
 
 autocmd BufEnter,BufWinEnter,TabEnter *.rs lua require'lsp_extensions'.inlay_hints{}
@@ -20,19 +19,29 @@ autocmd BufEnter,BufWinEnter,TabEnter *.rs lua require'lsp_extensions'.inlay_hin
 let mapleader = "\<Space>"
 let maplocalleader = "\\"
 
-nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
-vnoremap <silent> <leader> :<c-u>WhichKeyVisual '<Space>'<CR>
+nnoremap <silent> <leader> <cmd><c-u>WhichKey '<Space>'<CR>
+vnoremap <silent> <leader> <cmd><c-u>WhichKeyVisual '<Space>'<CR>
 
-nnoremap <silent> <localleader> :<c-u>WhichKey '\'<CR>
-vnoremap <silent> <localleader> :<c-u>WhichKeyVisual '\'<CR>
+nnoremap <silent> <localleader> <cmd><c-u>WhichKey '\'<CR>
+vnoremap <silent> <localleader> <cmd><c-u>WhichKeyVisual '\'<CR>
 
-map <leader><leader> :Files<cr>
-map <space>, :Buffers<cr>
-map <space>h :Helptags<cr>
+map <leader><leader> <cmd>Files<cr>
+map <space>, <cmd>Buffers<cr>
+map <space>h <cmd>Helptags<cr>
 
-imap jk <Esc>
-nmap <C-s> <cmd>w<CR>
-imap <C-s> <Esc><cmd>w<CR>
+imap jk <esc>
+imap kj <esc>
+vmap jk <esc>
+vmap kj <esc>
+
+" Use <C-s> for save
+nnoremap <silent> <C-s> <cmd>update<cr>
+inoremap <silent> <C-s> <cmd>update<cr>
+vnoremap <silent> <C-s> <cmd>update<cr>
+
+" Allow <C-z> from insert mode and visual modes
+inoremap <silent> <C-z> <cmd>stop<cr>
+vnoremap <silent> <C-z> <cmd>stop<cr>
 
 " Mapping selecting mappings
 nmap <leader><tab> <plug>(fzf-maps-n)
