@@ -5,6 +5,7 @@ function layer.init_config()
   local lspconfig = require("lspconfig")
 
   lsp.register_server(lspconfig.sumneko_lua, {
+    cmd = {"lua-language-server"},
     settings = {
       Lua = {
         diagnostics = {
