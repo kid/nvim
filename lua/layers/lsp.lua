@@ -2,11 +2,13 @@ local layer = {}
 
 function layer.plugins(use)
   use "neovim/nvim-lspconfig"
-  use "nvim-lua/completion-nvim"
+  -- use "nvim-lua/completion-nvim"
   use "nvim-lua/lsp-status.nvim"
   use "nvim-lua/lsp_extensions.nvim"
+  use "hrsh7th/nvim-compe"
   use "hrsh7th/vim-vsnip"
-  use "hrsh7th/vim-vsnip-integ"
+  use "norcalli/snippets.nvim"
+  -- use "hrsh7th/vim-vsnip-integ"
   use {
     "ojroques/nvim-lspfuzzy",
     requires = {
@@ -24,6 +26,22 @@ function layer.init_config()
       'right:+{2}-/2:noborder'
     },
   }
+
+  require("compe").setup {
+    enabled = true,
+    autocomplete = true,
+    preselect = "enable",
+
+    source = {
+      path = true,
+      buffer = true,
+      vsnip = true,
+      nvim_lsp = true,
+      nvim_lua = true,
+      spell = true,
+    },
+  }
+  require("snippets").use_suggested_mappings()
 
   -- local lsp_status = require("lsp-status")
   -- lsp_status.register_progress()
@@ -53,12 +71,12 @@ end
 
 function layer.register_server(server, config)
   local lsp_status = require("lsp-status")
-  local completion = require("completion")
+  -- local completion = require("completion")
 
   config = config or {}
 
   config.on_attach = function(client)
-    completion.on_attach(client)
+    -- completion.on_attach(client)
     lsp_status.on_attach(client)
   end
 
