@@ -19,7 +19,7 @@ function layer.plugins(use)
 end
 
 function layer.init_config()
-  vim.o.completeopt = "menuone,noinsert,noselect"
+  vim.o.completeopt = "menu,menuone,noselect"
 
   require("lspfuzzy").setup{
     fzf_preview = {
@@ -39,9 +39,17 @@ function layer.init_config()
       nvim_lsp = true,
       nvim_lua = true,
       spell = true,
+      snippets_nvim = true,
     },
   }
-  require("snippets").use_suggested_mappings()
+
+  local snippets = require("snippets")
+  snippets.use_suggested_mappings()
+  snippets.snippets = {
+    _global = {
+      todo = "TODO($1): $2";
+    },
+  };
 
   -- local lsp_status = require("lsp-status")
   -- lsp_status.register_progress()
