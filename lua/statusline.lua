@@ -1,5 +1,5 @@
 local config = function ()
-  require('lualine').status()
+  require('lualine').setup()
 end
 
 return function (use)
