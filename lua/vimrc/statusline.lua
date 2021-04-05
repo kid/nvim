@@ -1,5 +1,6 @@
 local config = function ()
-  require('lualine').setup()
+  require('lualine').setup{options = {section_separators = '', component_separators = ''}
+  }
 end
 
 return function (use)

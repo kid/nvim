@@ -1,4 +1,4 @@
-set guifont=Fira\ Code\ Nerd\ Font:h12
+set guifont=Fira\ Code\ Nerd\ Font:h11
 
 luafile ~/.config/nvim/config.lua
 
