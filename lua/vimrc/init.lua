@@ -35,22 +35,16 @@ require('packer').startup {
       end,
     }
     use {'TimUntersberger/neogit', requires = {'nvim-lua/plenary.nvim'}}
-    -- use {
-    --   'lewis6991/gitsigns.nvim',
-    --   requires = {
-    --     'nvim-lua/plenary.nvim',
-    --   },
-    --   config = function ()
-    --     require('gitsigns').setup {
-    --       signs = {
-    --         add          = {hl = 'DiffAdd'   , text = '│', numhl='GitSignsAddNr'},
-    --         -- add    = { hl = 'GitGutterAdd' },
-    --         change = { hl = 'GitGutterChange' },
-    --       },
-    --     }
-    --   end
-    -- }
-    -- use 'liuchengxu/vim-which-key'
+    use {
+      'lewis6991/gitsigns.nvim',
+      requires = {
+        'nvim-lua/plenary.nvim',
+      },
+      config = function ()
+        require('gitsigns').setup { }
+      end
+    }
+    use 'liuchengxu/vim-which-key'
     use {
       'svermeulen/vim-cutlass', -- TODO not working?
       config = function()
