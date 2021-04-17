@@ -4,7 +4,7 @@ return function(use)
     run = ':TSUpdate',
     config = function()
       require'nvim-treesitter.configs'.setup {
-        highlight = {enable = true},
+        highlight = { enable = true },
         incremental_selection = {
           enable = true,
           keymaps = {
@@ -15,7 +15,7 @@ return function(use)
           },
         },
         refactor = {
-          highlight_defintions = {enable = false},
+          highlight_defintions = { enable = false },
           smart_rename = {
             enable = true,
             -- smart_rename = 'grr',             -- mapping to rename reference under cursor

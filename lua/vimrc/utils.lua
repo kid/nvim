@@ -9,7 +9,7 @@ M['unload_lua_namespace'] = function(prefix)
   end
 end
 
-M['reload']  = function(prefix)
+M['reload'] = function(prefix)
   local vimp = require('vimp')
   local packer = require('packer')
 

@@ -1,8 +1,8 @@
 return function(use)
   use {
     'neovim/nvim-lspconfig',
-    requires = {'onsails/lspkind-nvim', 'kosayoda/nvim-lightbulb', 'svermeulen/vimpeccable'},
-    rocks = {'luaformatter', server = 'https://luarocks.org/dev'},
+    requires = { 'onsails/lspkind-nvim', 'kosayoda/nvim-lightbulb', 'svermeulen/vimpeccable' },
+    rocks = { 'luaformatter', server = 'https://luarocks.org/dev' },
     config = function()
       local lspconfig = require('lspconfig')
       local vimp = require('vimp')
@@ -12,39 +12,39 @@ return function(use)
 
       lspconfig.rust_analyzer.setup {
         capabilities = capabilities,
-        settings = {['rust-analyzer'] = {assist = {importMergeBehavior = 'last'}, procMacro = {enable = true}}},
+        settings = { ['rust-analyzer'] = { assist = { importMergeBehavior = 'last' }, procMacro = { enable = true } } },
       }
 
       lspconfig.sumneko_lua.setup {
-        cmd = {'lua-language-server'},
+        cmd = { 'lua-language-server' },
         capabilities = capabilities,
         settings = {
           Lua = {
-            diagnostics = {globals = {'vim'}},
+            diagnostics = { globals = { 'vim' } },
             runtime = {
               -- version = 'LuaJIT',
               path = vim.split(package.path, ';'),
             },
             workspace = {
-              library = {[vim.fn.expand('$VIMRUNTIME/lua')] = true, [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true},
+              library = { [vim.fn.expand('$VIMRUNTIME/lua')] = true, [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true },
             },
           },
         },
       }
 
       lspconfig.efm.setup {
-        init_options = {documentFormatting = true},
-        filetypes = {'lua'},
-        settings = {languages = {lua = {{formatCommand = 'lua-format -i', formatStdin = true}}}},
+        init_options = { documentFormatting = true },
+        filetypes = { 'lua' },
+        settings = { languages = { lua = { { formatCommand = 'lua-format -i', formatStdin = true } } } },
       }
 
       require('lspkind').init()
 
-      local opts = {noremap = true, silent = true}
+      local opts = { noremap = true, silent = true }
       local builtin = require('telescope.builtin')
 
-      vimp.nnoremap({'repeatable', 'silent'}, '[d', vim.lsp.diagnostic.goto_prev)
-      vimp.nnoremap({'repeatable', 'silent'}, ']d', vim.lsp.diagnostic.goto_next)
+      vimp.nnoremap({ 'repeatable', 'silent' }, '[d', vim.lsp.diagnostic.goto_prev)
+      vimp.nnoremap({ 'repeatable', 'silent' }, ']d', vim.lsp.diagnostic.goto_next)
       vim.api.nvim_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
       vimp.nnoremap('gD', builtin.lsp_definitions)
       vim.api.nvim_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
@@ -62,7 +62,7 @@ return function(use)
       vimp.nnoremap('<leader>cr', vim.lsp.buf.rename)
 
       vim.cmd [[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]]
-      vim.fn.sign_define('LightBulbSign', {text = '💡', texthl = 'LspDiagnosticsSignInformation'})
+      vim.fn.sign_define('LightBulbSign', { text = '💡', texthl = 'LspDiagnosticsSignInformation' })
     end,
   }
 end

@@ -15,7 +15,7 @@ vim.g.maplocalleader = '\\'
 require('packer').startup {
   function(use)
     -- let packer manage itself
-    use {'wbthomason/packer.nvim', opt = true}
+    use { 'wbthomason/packer.nvim', opt = true }
     use 'editorconfig/editorconfig-vim'
     use 'tpope/vim-commentary'
     use 'tpope/vim-surround'
@@ -31,24 +31,22 @@ require('packer').startup {
         vim.api.nvim_set_keymap('n', '<LocalLeader><LocalLeader>w', '<Plug>(easymotion-bd-w)', {})
       end,
     }
-    use {'TimUntersberger/neogit', requires = {'nvim-lua/plenary.nvim'}}
+    use { 'TimUntersberger/neogit', requires = { 'nvim-lua/plenary.nvim' } }
     use {
       'lewis6991/gitsigns.nvim',
-      requires = {
-        'nvim-lua/plenary.nvim',
-      },
-      config = function ()
-        require('gitsigns').setup { }
-      end
+      requires = { 'nvim-lua/plenary.nvim' },
+      config = function()
+        require('gitsigns').setup {}
+      end,
     }
     use 'liuchengxu/vim-which-key'
     use {
       'svermeulen/vim-cutlass', -- TODO not working?
       config = function()
-        vim.api.nvim_set_keymap('n', 'm', 'd', {noremap = true})
-        vim.api.nvim_set_keymap('x', 'm', 'd', {noremap = true})
-        vim.api.nvim_set_keymap('n', 'mm', 'dd', {noremap = true})
-        vim.api.nvim_set_keymap('n', 'M', 'D', {noremap = true})
+        vim.api.nvim_set_keymap('n', 'm', 'd', { noremap = true })
+        vim.api.nvim_set_keymap('x', 'm', 'd', { noremap = true })
+        vim.api.nvim_set_keymap('n', 'mm', 'dd', { noremap = true })
+        vim.api.nvim_set_keymap('n', 'M', 'D', { noremap = true })
       end,
     }
     -- TODO try bfredl/nvim-miniyank instead?
@@ -112,26 +110,26 @@ require('packer').startup {
     }
     use {
       'akinsho/nvim-bufferline.lua',
-      requires = {'kyazdani42/nvim-web-devicons'},
+      requires = { 'kyazdani42/nvim-web-devicons' },
       config = function()
         require'bufferline'.setup {}
         local vimp = require('vimp')
-        vimp.nnoremap({'repeatable'}, '[b', ':BufferLineCyclePrev<CR>')
-        vimp.nnoremap({'repeatable'}, ']b', ':BufferLineCycleNext<CR>')
-        vimp.nnoremap({'repeatable'}, '[t', ':tabprevious<CR>')
-        vimp.nnoremap({'repeatable'}, ']t', ':tabnext<CR>')
+        vimp.nnoremap({ 'repeatable' }, '[b', ':BufferLineCyclePrev<CR>')
+        vimp.nnoremap({ 'repeatable' }, ']b', ':BufferLineCycleNext<CR>')
+        vimp.nnoremap({ 'repeatable' }, '[t', ':tabprevious<CR>')
+        vimp.nnoremap({ 'repeatable' }, ']t', ':tabnext<CR>')
       end,
     }
     use {
       'kyazdani42/nvim-tree.lua',
-      requires = {'kyazdani42/nvim-web-devicons'},
+      requires = { 'kyazdani42/nvim-web-devicons' },
       config = function()
         vim.g.nvim_tree_gitignore = 1
         vim.g.nvim_tree_follow = 1
         vim.g.nvim_tree_auto_close = 0
         vim.g.vim_tree_disable_netrw = 1
 
-        vim.api.nvim_set_keymap('n', '<Leader>n', ':NvimTreeToggle<CR>', {noremap = true})
+        vim.api.nvim_set_keymap('n', '<Leader>n', ':NvimTreeToggle<CR>', { noremap = true })
       end,
     }
     use 'pearofducks/ansible-vim'
@@ -162,10 +160,10 @@ require('packer').startup {
         vimp.vnoremap('<Leader>p', '"+p')
         vimp.nnoremap('<Leader>P', '"+P')
 
-        vimp.nnoremap({'silent'}, '<C-s>', '<cmd>update<cr>')
-        vimp.inoremap({'silent'}, '<C-s>', '<cmd>update<cr>')
-        vimp.vnoremap({'silent'}, '<C-s>', '<cmd>update<cr>')
-      end
+        vimp.nnoremap({ 'silent' }, '<C-s>', '<cmd>update<cr>')
+        vimp.inoremap({ 'silent' }, '<C-s>', '<cmd>update<cr>')
+        vimp.vnoremap({ 'silent' }, '<C-s>', '<cmd>update<cr>')
+      end,
     }
 
     require('vimrc.fuzzy')(use)
