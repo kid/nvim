@@ -20,6 +20,7 @@ return function(use)
       vimp.nnoremap('<leader>,', ensure_out_of_tree(builtin.buffers))
       vimp.nnoremap('<leader>h', ensure_out_of_tree(builtin.help_tags))
       vimp.nnoremap('<leader>s', ensure_out_of_tree(builtin.live_grep))
+      vimp.nnoremap('<leader>k', ensure_out_of_tree(builtin.keymaps))
     end,
   }
 end

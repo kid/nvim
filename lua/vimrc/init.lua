@@ -23,9 +23,6 @@ require('packer').startup {
     use 'tpope/vim-rhubarb'
     use 'tpope/vim-repeat'
     use 'unblevable/quick-scope'
-    use {'svermeulen/vimpeccable', config = function ()
-      require('vimp').nnoremap('<leader>r', require('vimrc.utils').reload)
-    end}
     use {
       'easymotion/vim-easymotion',
       config = function()
@@ -131,25 +128,55 @@ require('packer').startup {
       config = function()
         vim.g.nvim_tree_gitignore = 1
         vim.g.nvim_tree_follow = 1
-        vim.g.nvim_tree_auto_close = 1
+        vim.g.nvim_tree_auto_close = 0
         vim.g.vim_tree_disable_netrw = 1
 
         vim.api.nvim_set_keymap('n', '<Leader>n', ':NvimTreeToggle<CR>', {noremap = true})
       end,
     }
+    use 'pearofducks/ansible-vim'
+    use {
+      'svermeulen/vimpeccable',
+      config = function()
+        local vimp = require('vimp')
+        vimp.nnoremap('<leader>r', require('vimrc.utils').reload)
+
+        vimp.inoremap('jk', '<Esc>')
+        vimp.vnoremap('jk', '<Esc>')
+
+        vimp.cnoremap('<C-a>', '<Home>')
+        vimp.cnoremap('<C-e>', '<End>')
+
+        vimp.nnoremap('<C-h>', '<C-w>h')
+        vimp.nnoremap('<C-j>', '<C-w>j')
+        vimp.nnoremap('<C-k>', '<C-w>k')
+        vimp.nnoremap('<C-l>', '<C-w>l')
+
+        vimp.nnoremap('Y', 'y$')
+
+        vimp.nnoremap('<Leader>y', '"+y')
+        vimp.vnoremap('<Leader>y', '"+y')
+        vimp.nnoremap('<Leader>Y', '"+y$')
+
+        vimp.nnoremap('<Leader>p', '"+p')
+        vimp.vnoremap('<Leader>p', '"+p')
+        vimp.nnoremap('<Leader>P', '"+P')
+
+        vimp.nnoremap({'silent'}, '<C-s>', '<cmd>update<cr>')
+        vimp.inoremap({'silent'}, '<C-s>', '<cmd>update<cr>')
+        vimp.vnoremap({'silent'}, '<C-s>', '<cmd>update<cr>')
+      end
+    }
+
     require('vimrc.fuzzy')(use)
     require('vimrc.statusline')(use)
     require('vimrc.lsp')(use)
     require('vimrc.completion')(use)
     require('vimrc.treesitter')(use)
 
-    vim.api.nvim_set_keymap('i', 'jk', '<esc>', {})
-    vim.api.nvim_set_keymap('v', 'jk', '<esc>', {})
-
-    vim.api.nvim_set_keymap('n', '<C-h>', '<C-w>h', {noremap = true, silent = true})
-    vim.api.nvim_set_keymap('n', '<C-j>', '<C-w>j', {noremap = true, silent = true})
-    vim.api.nvim_set_keymap('n', '<C-k>', '<C-w>k', {noremap = true, silent = true})
-    vim.api.nvim_set_keymap('n', '<C-l>', '<C-w>l', {noremap = true, silent = true})
+    vim.api.nvim_command([[
+      autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank()
+    ]])
   end,
   config = {
     display = {
