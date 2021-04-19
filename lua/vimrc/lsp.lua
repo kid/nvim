@@ -32,10 +32,41 @@ return function(use)
         },
       }
 
+      lspconfig.tsserver.setup {
+        capabilities = capabilities,
+        on_attach = function(client)
+          if client.config.flags then
+            client.config.flags.allow_incremental_sync = true
+          end
+          client.resolved_capabilities.document_formatting = false
+        end,
+      }
+
+      local eslint = {
+        lintCommand = 'eslint_d -f unix --stdin --stdin-filename ${INPUT}',
+        lintStdin = true,
+        lintFormat = { '%f:%l:%c: %m' },
+        lintIgnoreExitCode = true,
+        formatCommand = 'eslint_d --fix-to-stdout --stdin --stdin-filename=${INPUT}',
+        formatStdin = true,
+      }
+
       lspconfig.efm.setup {
         init_options = { documentFormatting = true },
-        filetypes = { 'lua' },
-        settings = { languages = { lua = { { formatCommand = 'lua-format -i', formatStdin = true } } } },
+        filetypes = {
+          'lua', 'javascript', 'javascriptreact', 'javascript.jsx', 'typescript', 'typescriptreact', 'typescript.jsx',
+        },
+        settings = {
+          languages = {
+            lua = { { formatCommand = 'lua-format -i', formatStdin = true } },
+            javascript = { eslint },
+            javascriptreact = { eslint },
+            ['javascript.jsx'] = { eslint },
+            typescript = { eslint },
+            typescriptreact = { eslint },
+            ['typescript.tsx'] = { eslint },
+          },
+        },
       }
 
       require('lspkind').init()
