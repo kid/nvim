@@ -139,6 +139,7 @@ require('packer').startup {
         vim.api.nvim_set_keymap('n', '<Leader>n', ':NvimTreeToggle<CR>', { noremap = true })
       end,
     }
+    use 'towolf/vim-helm'
     use 'pearofducks/ansible-vim'
     use {
       'svermeulen/vimpeccable',
