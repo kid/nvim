@@ -70,6 +70,8 @@ return function(use)
         },
       }
 
+      lspconfig.yamlls.setup { settings = { ['yaml.schemas'] = { kubernetes = '/*.yaml' } } }
+
       require('lspkind').init()
 
       local opts = { noremap = true, silent = true }
