@@ -62,6 +62,7 @@ require('packer').startup {
       'gruvbox-community/gruvbox',
       config = function()
         vim.api.nvim_command('colorscheme gruvbox')
+        vim.g.gruvbox_invert_selection = 0
         vim.o.termguicolors = true
 
         -- Don't wait forever for the next key
