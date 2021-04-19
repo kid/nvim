@@ -22,7 +22,13 @@ require('packer').startup {
     use 'tpope/vim-fugitive'
     use 'tpope/vim-rhubarb'
     use 'tpope/vim-repeat'
-    use 'unblevable/quick-scope'
+    use {
+      'unblevable/quick-scope',
+      config = function()
+        -- Reduce slowdowns, specifically when using V-Block mode
+        vim.g.qs_lazy_highlight = 1
+      end
+    }
     use {
       'easymotion/vim-easymotion',
       config = function()
