@@ -92,8 +92,8 @@ require('packer').startup {
         vim.wo.relativenumber = true
 
         -- Show tabs and trailign spaces
-        vim.wo.list = true
-        vim.wo.listchars = 'tab:→ ,trail:-,extends:>,precedes:<,nbsp:+,eol:¬'
+        -- vim.wo.list = true
+        -- vim.wo.listchars = 'tab:→ ,trail:-,extends:>,precedes:<,nbsp:+,eol:¬'
 
         -- Always show the sign column
         vim.wo.signcolumn = 'yes'
@@ -113,6 +113,13 @@ require('packer').startup {
 
         -- Highlight while searching
         -- vim.o.hlsearch = true
+      end,
+    }
+    use {
+      'lukas-reineke/indent-blankline.nvim',
+      branch = 'lua',
+      config = function()
+        vim.g.indent_blankline_char = '|'
       end,
     }
     use {
