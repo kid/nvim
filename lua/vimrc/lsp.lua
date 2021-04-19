@@ -34,6 +34,7 @@ return function(use)
 
       lspconfig.tsserver.setup {
         capabilities = capabilities,
+        cmd = { 'typescript-language-server', '--stdio' },
         on_attach = function(client)
           if client.config.flags then
             client.config.flags.allow_incremental_sync = true
