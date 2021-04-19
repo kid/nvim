@@ -27,7 +27,7 @@ require('packer').startup {
       config = function()
         -- Reduce slowdowns, specifically when using V-Block mode
         vim.g.qs_lazy_highlight = 1
-      end
+      end,
     }
     use {
       'easymotion/vim-easymotion',
