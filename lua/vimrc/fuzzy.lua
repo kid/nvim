@@ -16,7 +16,7 @@ return function(use)
         end
       end
 
-      vimp.nnoremap('<leader><leader>', ensure_out_of_tree(builtin.find_files))
+      vimp.nnoremap({ 'override' }, '<leader><leader>', ensure_out_of_tree(builtin.find_files))
       vimp.nnoremap('<leader>,', ensure_out_of_tree(builtin.buffers))
       vimp.nnoremap('<leader>h', ensure_out_of_tree(builtin.help_tags))
       vimp.nnoremap('<leader>s', ensure_out_of_tree(builtin.live_grep))
