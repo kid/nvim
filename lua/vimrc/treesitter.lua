@@ -28,6 +28,12 @@ return function(use)
         },
         ensure_installed = 'all',
       }
+
+      vim.wo.foldmethod = 'expr'
+      vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
+
+      vim.api.nvim_set_keymap('n', '<Tab>', [[@=(foldlevel('.')?'za':"\<Tab>")<CR>]],
+                              { expr = false, noremap = true, silent = true })
     end,
   }
 end
