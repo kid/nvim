@@ -1,7 +1,10 @@
 return function(use)
   use {
     'neovim/nvim-lspconfig',
-    requires = { 'onsails/lspkind-nvim', 'kosayoda/nvim-lightbulb', 'svermeulen/vimpeccable' },
+    requires = {
+      'onsails/lspkind-nvim', 'kosayoda/nvim-lightbulb', 'svermeulen/vimpeccable', 'folke/lsp-colors.nvim',
+      'folke/trouble.nvim', 'simrat39/rust-tools.nvim',
+    },
     rocks = { 'luaformatter', server = 'https://luarocks.org/dev' },
     config = function()
       local lspconfig = require('lspconfig')
@@ -12,9 +15,11 @@ return function(use)
       capabilities.textDocument.completion.completionItem.resolveSupport =
         { properties = { 'additionalTextEdits', 'detail', 'documentation' } }
 
-      lspconfig.rust_analyzer.setup {
-        capabilities = capabilities,
-        settings = { ['rust-analyzer'] = { assist = { importMergeBehavior = 'last' }, procMacro = { enable = true } } },
+      require('rust-tools').setup {
+        server = {
+          capabilities = capabilities,
+          settings = { ['rust-analyzer'] = { assist = { importMergeBehavior = 'last' }, procMacro = { enable = true } } },
+        },
       }
 
       lspconfig.sumneko_lua.setup {
@@ -75,6 +80,8 @@ return function(use)
       lspconfig.yamlls.setup { settings = { ['yaml.schemas'] = { kubernetes = '/*.yaml' } } }
 
       require('lspkind').init()
+      require('lsp-colors').setup()
+      require('trouble').setup()
 
       local opts = { noremap = true, silent = true }
       local builtin = require('telescope.builtin')
