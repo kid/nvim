@@ -33,8 +33,8 @@ require('packer').startup {
       'easymotion/vim-easymotion',
       config = function()
         vim.g.EasyMotion_do_mapping = 0
-        vim.api.nvim_set_keymap('n', '<LocalLeader><LocalLeader>', '<Plug>(easymotion-prefix)', {})
-        vim.api.nvim_set_keymap('n', '<LocalLeader><LocalLeader>w', '<Plug>(easymotion-bd-w)', {})
+        vim.api.nvim_set_keymap('n', '<localleader><localleader>', '<Plug>(easymotion-prefix)', {})
+        vim.api.nvim_set_keymap('n', '<localleader><localleader>w', '<Plug>(easymotion-bd-w)', {})
       end,
     }
     use { 'TimUntersberger/neogit', requires = { 'nvim-lua/plenary.nvim' } }
@@ -45,28 +45,34 @@ require('packer').startup {
         require('gitsigns').setup {}
       end,
     }
-    use 'liuchengxu/vim-which-key'
     use {
-      'svermeulen/vim-cutlass', -- TODO not working?
+      'folke/which-key.nvim',
       config = function()
-        vim.api.nvim_set_keymap('n', 'm', 'd', { noremap = true })
-        vim.api.nvim_set_keymap('x', 'm', 'd', { noremap = true })
-        vim.api.nvim_set_keymap('n', 'mm', 'dd', { noremap = true })
-        vim.api.nvim_set_keymap('n', 'M', 'D', { noremap = true })
+        require('which-key').setup()
       end,
     }
+    -- FIXME conflicts with which-key.nvim
+    -- use {
+    --   'svermeulen/vim-cutlass', -- TODO not working?
+    --   config = function()
+    --     vim.api.nvim_set_keymap('n', 'm', 'd', { noremap = true })
+    --     vim.api.nvim_set_keymap('x', 'm', 'd', { noremap = true })
+    --     vim.api.nvim_set_keymap('n', 'mm', 'dd', { noremap = true })
+    --     vim.api.nvim_set_keymap('n', 'M', 'D', { noremap = true })
+    --   end,
+    -- }
     -- TODO try bfredl/nvim-miniyank instead?
     -- or https://github.com/nvim-telescope/telescope.nvim/issues/255#issuecomment-731361724
     -- use 'svermeulen/vim-yoink'
     use {
       'gruvbox-community/gruvbox',
       config = function()
-        vim.api.nvim_command('colorscheme gruvbox')
-        vim.g.gruvbox_invert_selection = 0
         vim.o.termguicolors = true
+        vim.g.gruvbox_invert_selection = 0
+        vim.api.nvim_command('colorscheme gruvbox')
 
         -- Don't wait forever for the next key
-        vim.g.timeoutlen = 200
+        vim.g.timeoutlen = 500
 
         -- Faster updatetime for quick CursorHold updates
         vim.o.updatetime = 100
@@ -148,7 +154,7 @@ require('packer').startup {
         vim.g.nvim_tree_indent_markers = 1
         vim.g.nvim_tree_show_icons = { git = 0, files = 1, folders = 1 }
 
-        vim.api.nvim_set_keymap('n', '<Leader>n', ':NvimTreeToggle<CR>', { noremap = true })
+        vim.api.nvim_set_keymap('n', '<leader>n', ':NvimTreeToggle<CR>', { noremap = true })
       end,
     }
     use 'towolf/vim-helm'
@@ -172,13 +178,13 @@ require('packer').startup {
 
         vimp.nnoremap('Y', 'y$')
 
-        vimp.nnoremap('<Leader>y', '"+y')
-        vimp.vnoremap('<Leader>y', '"+y')
-        vimp.nnoremap('<Leader>Y', '"+y$')
+        vimp.nnoremap('<leader>y', '"+y')
+        vimp.vnoremap('<leader>y', '"+y')
+        vimp.nnoremap('<leader>Y', '"+y$')
 
-        vimp.nnoremap('<Leader>p', '"+p')
-        vimp.vnoremap('<Leader>p', '"+p')
-        vimp.nnoremap('<Leader>P', '"+P')
+        vimp.nnoremap('<leader>p', '"+p')
+        vimp.vnoremap('<leader>p', '"+p')
+        vimp.nnoremap('<leader>P', '"+P')
 
         vimp.nnoremap({ 'override', 'silent' }, '<C-s>', '<cmd>update<cr>')
         vimp.inoremap({ 'override', 'silent' }, '<C-s>', '<cmd>update<cr>')
