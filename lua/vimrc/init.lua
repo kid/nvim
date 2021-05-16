@@ -191,6 +191,9 @@ require('packer').startup {
         vimp.nnoremap({ 'override', 'silent' }, '<C-s>', '<cmd>update<cr>')
         vimp.inoremap({ 'override', 'silent' }, '<C-s>', '<cmd>update<cr>')
         vimp.vnoremap({ 'override', 'silent' }, '<C-s>', '<cmd>update<cr>')
+
+        vimp.inoremap({ 'silent' }, '<C-z>', '<cmd>stop<cr>')
+        vimp.vnoremap({ 'silent' }, '<C-z>', '<cmd>stop<cr>')
       end,
     }
 
