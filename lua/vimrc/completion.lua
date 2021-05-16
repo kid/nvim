@@ -36,24 +36,15 @@ local config = function()
     autocomplete = true,
     preselect = 'enable',
 
-    source = {
-      path = true,
-      buffer = true,
-      vsnip = true,
-      nvim_lsp = true,
-      nvim_lua = true,
-      spell = true,
-    },
+    source = { path = true, buffer = true, vsnip = true, nvim_lsp = true, nvim_lua = true, spell = true },
   }
 
   vim.o.completeopt = 'menuone,noselect'
 
   vim.api.nvim_set_keymap('i', '<Tab>', 'v:lua.tab_complete()', { expr = true })
   vim.api.nvim_set_keymap('s', '<Tab>', 'v:lua.tab_complete()', { expr = true })
-  vim.api.nvim_set_keymap('i', '<S-Tab>', 'v:lua.s_tab_complete()',
-                          { expr = true })
-  vim.api.nvim_set_keymap('s', '<S-Tab>', 'v:lua.s_tab_complete()',
-                          { expr = true })
+  vim.api.nvim_set_keymap('i', '<S-Tab>', 'v:lua.s_tab_complete()', { expr = true })
+  vim.api.nvim_set_keymap('s', '<S-Tab>', 'v:lua.s_tab_complete()', { expr = true })
   vim.api.nvim_set_keymap('i', '<CR>', 'compe#confirm("<CR>")', { expr = true })
 
   require('snippets').use_suggested_mappings()
@@ -68,9 +59,5 @@ local config = function()
 end
 
 return function(use)
-  use {
-    'hrsh7th/nvim-compe',
-    requires = { 'hrsh7th/vim-vsnip', 'norcalli/snippets.nvim' },
-    config = config,
-  }
+  use { 'hrsh7th/nvim-compe', requires = { 'hrsh7th/vim-vsnip', 'norcalli/snippets.nvim' }, config = config }
 end
