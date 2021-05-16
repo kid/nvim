@@ -119,6 +119,8 @@ require('packer').startup {
 
         -- Highlight while searching
         -- vim.o.hlsearch = true
+
+        vim.o.foldlevelstart = 10
       end,
     }
     use {
