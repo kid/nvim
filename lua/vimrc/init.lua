@@ -72,7 +72,7 @@ require('packer').startup {
         vim.api.nvim_command('colorscheme gruvbox')
 
         -- Don't wait forever for the next key
-        vim.g.timeoutlen = 500
+        vim.o.timeoutlen = 500
 
         -- Faster updatetime for quick CursorHold updates
         vim.o.updatetime = 100
