@@ -39,6 +39,8 @@ return function(use)
         },
       }
 
+      lspconfig.gopls.setup{}
+
       lspconfig.tsserver.setup {
         capabilities = capabilities,
         cmd = { 'typescript-language-server', '--stdio' },
