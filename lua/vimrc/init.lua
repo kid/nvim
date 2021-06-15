@@ -23,19 +23,14 @@ require('packer').startup {
     use 'tpope/vim-rhubarb'
     use 'tpope/vim-repeat'
     use {
-      'unblevable/quick-scope',
-      config = function()
-        -- Reduce slowdowns, specifically when using V-Block mode
-        vim.g.qs_lazy_highlight = 1
-      end,
-    }
-    use {
-      'easymotion/vim-easymotion',
-      config = function()
-        vim.g.EasyMotion_do_mapping = 0
-        vim.api.nvim_set_keymap('n', '<localleader><localleader>', '<Plug>(easymotion-prefix)', {})
-        vim.api.nvim_set_keymap('n', '<localleader><localleader>w', '<Plug>(easymotion-bd-w)', {})
-      end,
+      'ggandor/lightspeed.nvim',
+      config = function ()
+        require('lightspeed').setup {
+          highlight_unique_chars = true,
+          cycle_group_fwd_key = '<Tab',
+          cycle_group_bwd_key = '<S-Tab>',
+        }
+      end
     }
     use { 'TimUntersberger/neogit', requires = { 'nvim-lua/plenary.nvim' } }
     use {

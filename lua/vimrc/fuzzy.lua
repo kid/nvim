@@ -1,7 +1,7 @@
 return function(use)
   use {
     'nvim-telescope/telescope.nvim',
-    requires = { 'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim', 'unblevable/quick-scope', 'svermeulen/vimpeccable' },
+    requires = { 'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim', 'svermeulen/vimpeccable' },
     config = function()
       local vimp = require('vimp')
       local builtin = require('telescope.builtin')
