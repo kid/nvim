@@ -1,9 +1,11 @@
+
+
 return function(use)
   use {
     'nvim-telescope/telescope.nvim',
-    requires = { 'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim', 'svermeulen/vimpeccable' },
+    requires = { 'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim', 'folke/which-key.nvim' },
     config = function()
-      local vimp = require('vimp')
+      local wk = require('which-key')
       local builtin = require('telescope.builtin')
 
       local ensure_out_of_tree = function(func)
@@ -16,11 +18,15 @@ return function(use)
         end
       end
 
-      vimp.nnoremap({ 'override' }, '<leader><leader>', ensure_out_of_tree(builtin.find_files))
-      vimp.nnoremap('<leader>,', ensure_out_of_tree(builtin.buffers))
-      vimp.nnoremap('<leader>h', ensure_out_of_tree(builtin.help_tags))
-      vimp.nnoremap('<leader>s', ensure_out_of_tree(builtin.live_grep))
-      vimp.nnoremap('<leader>k', ensure_out_of_tree(builtin.keymaps))
+      wk.register({
+        ["<leader>"] = {
+          ["<leader>"] = { ensure_out_of_tree(builtin.find_files), 'Find files' },
+          [','] = { ensure_out_of_tree(builtin.buffers), 'Buffers' },
+          h = { ensure_out_of_tree(builtin.help_tags), 'Help tags' },
+          s = { ensure_out_of_tree(builtin.live_grep), 'Search' },
+          k = { ensure_out_of_tree(builtin.keymaps), 'Keymaps' },
+        }
+      })
     end,
   }
 end

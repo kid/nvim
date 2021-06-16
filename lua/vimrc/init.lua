@@ -129,14 +129,17 @@ require('packer').startup {
     }
     use {
       'akinsho/nvim-bufferline.lua',
-      requires = { 'kyazdani42/nvim-web-devicons' },
+      requires = { 'kyazdani42/nvim-web-devicons', 'folke/which-key.nvim' },
       config = function()
         require'bufferline'.setup {}
-        local vimp = require('vimp')
-        vimp.nnoremap({ 'repeatable' }, '[b', ':BufferLineCyclePrev<CR>')
-        vimp.nnoremap({ 'repeatable' }, ']b', ':BufferLineCycleNext<CR>')
-        vimp.nnoremap({ 'repeatable' }, '[t', ':tabprevious<CR>')
-        vimp.nnoremap({ 'repeatable' }, ']t', ':tabnext<CR>')
+        local wk = require('which-key')
+
+        wk.register({
+          [']b'] = { '<cmd>BufferLineCycleNext<cr>', 'Next buffer' },
+          ['[b'] = { '<cmd>BufferLineCyclePrev<cr>', 'Previous buffer' },
+          [']t'] = { '<cmd>tabnext<cr>', 'Next tab' },
+          ['[t'] = { '<cmd>tabprevious<cr>', 'Previous tab' },
+        })
       end,
     }
     use {

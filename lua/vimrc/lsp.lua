@@ -2,13 +2,12 @@ return function(use)
   use {
     'neovim/nvim-lspconfig',
     requires = {
-      'onsails/lspkind-nvim', 'kosayoda/nvim-lightbulb', 'svermeulen/vimpeccable', 'folke/lsp-colors.nvim',
+      'onsails/lspkind-nvim', 'kosayoda/nvim-lightbulb', 'folke/which-key.nvim', 'folke/lsp-colors.nvim',
       'folke/trouble.nvim', 'simrat39/rust-tools.nvim',
     },
     rocks = { 'luaformatter', server = 'https://luarocks.org/dev' },
     config = function()
       local lspconfig = require('lspconfig')
-      local vimp = require('vimp')
 
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -39,7 +38,7 @@ return function(use)
         },
       }
 
-      lspconfig.gopls.setup{}
+      lspconfig.gopls.setup {}
 
       lspconfig.tsserver.setup {
         capabilities = capabilities,
@@ -85,28 +84,33 @@ return function(use)
       require('lsp-colors').setup()
       require('trouble').setup()
 
-      local opts = { noremap = true, silent = true }
       local builtin = require('telescope.builtin')
+      local wk = require('which-key')
 
-      vimp.nnoremap({ 'repeatable', 'silent' }, '[d', vim.lsp.diagnostic.goto_prev)
-      vimp.nnoremap({ 'repeatable', 'silent' }, ']d', vim.lsp.diagnostic.goto_next)
-      vim.api.nvim_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-      vimp.nnoremap('gD', builtin.lsp_definitions)
-      vim.api.nvim_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-      vim.api.nvim_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+      wk.register({
+        [']d'] = { vim.lsp.diagnostic.goto_next, 'Next diagnostic' },
+        ['[d'] = { vim.lsp.diagnostic.goto_prev, 'Previous diagnostic' },
+        K = { vim.lsp.buf.howver, 'Lsp Hover' },
+        gw = { builtin.lsp_dynamic_workspace_symbols, 'Workspace symbols' },
+        g0 = { builtin.lsp_document_symbols, 'Document symbols' },
+        gr = { builtin.lsp_references, 'References' },
+        gD = { builtin.lsp_definitions, 'Go to definition(s)' },
+        gi = { builtin.lsp_implementations, 'Go to implementation' },
+        gd = { vim.lsp.buf.declaration, 'Go to declaration' },
+        gtd = { vim.lsp.type_definition, 'Go to type definition' },
+        ['<leader>c'] = {
+          name = '+code',
+          a = { builtin.lsp_code_actions, 'Actions' },
+          f = { vim.lsp.buf.formatting, 'Format' },
+        },
+      }, { noremap = true })
+
+      wk.register({ ['<leader>ca'] = { builtin.lsp_range_code_actions, 'Actions' } },
+                  { noremap = true, mode = 'v' })
+
       -- TODO find an alternate binding, conflicts with windows movement shortcuts
       -- vim.api.nvim_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>',    opts)
-      vim.api.nvim_set_keymap('n', 'gtd', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-      vimp.nnoremap('gr', builtin.lsp_references)
-      vimp.nnoremap('g0', builtin.lsp_document_symbols)
-      vimp.nnoremap('gw', builtin.lsp_workspace_symbols)
-
-      vimp.nnoremap('<leader>ca', builtin.lsp_code_actions)
-      vimp.vnoremap('<leader>ca', builtin.lsp_range_code_actions)
-      vimp.nnoremap('<leader>cf', vim.lsp.buf.formatting)
-      vimp.nnoremap('<leader>cr', vim.lsp.buf.rename)
-
-      vim.cmd [[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]]
+      -- vim.cmd [[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]]
       vim.fn.sign_define('LightBulbSign', { text = '💡', texthl = 'LspDiagnosticsSignInformation' })
     end,
   }
