@@ -63,11 +63,12 @@ return function(use)
       lspconfig.efm.setup {
         init_options = { documentFormatting = true },
         filetypes = {
-          'lua', 'javascript', 'javascriptreact', 'javascript.jsx', 'typescript', 'typescriptreact', 'typescript.jsx',
+          'lua', 'rego', 'javascript', 'javascriptreact', 'javascript.jsx', 'typescript', 'typescriptreact', 'typescript.jsx',
         },
         settings = {
           languages = {
             lua = { { formatCommand = 'lua-format -i', formatStdin = true } },
+            rego = { { formatCommand = 'opa fmt', formatStdin = true } },
             javascript = { eslint },
             javascriptreact = { eslint },
             ['javascript.jsx'] = { eslint },

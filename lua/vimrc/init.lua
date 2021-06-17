@@ -161,6 +161,7 @@ require('packer').startup {
     use 'pearofducks/ansible-vim'
     use 'google/vim-jsonnet'
     use 'hashivim/vim-terraform'
+    use 'tsandall/vim-rego'
     use {
       'svermeulen/vimpeccable',
       config = function()
