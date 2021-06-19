@@ -3,7 +3,7 @@
 return function(use)
   use {
     'nvim-telescope/telescope.nvim',
-    requires = { 'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim', 'folke/which-key.nvim' },
+    requires = { 'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim' },
     config = function()
       local wk = require('which-key')
       local builtin = require('telescope.builtin')

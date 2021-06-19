@@ -10,7 +10,6 @@ M['unload_lua_namespace'] = function(prefix)
 end
 
 M['reload'] = function(prefix)
-  local vimp = require('vimp')
   local packer = require('packer')
 
   prefix = prefix or 'vimrc'
@@ -18,7 +17,6 @@ M['reload'] = function(prefix)
   vim.cmd('silent wa')
   vim.lsp.stop_client(vim.lsp.get_active_clients())
 
-  vimp.unmap_all()
   M.unload_lua_namespace(prefix)
 
   require(prefix)

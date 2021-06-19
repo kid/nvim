@@ -24,13 +24,13 @@ require('packer').startup {
     use 'tpope/vim-repeat'
     use {
       'ggandor/lightspeed.nvim',
-      config = function ()
+      config = function()
         require('lightspeed').setup {
           highlight_unique_chars = true,
           cycle_group_fwd_key = '<Tab',
           cycle_group_bwd_key = '<S-Tab>',
         }
-      end
+      end,
     }
     use { 'TimUntersberger/neogit', requires = { 'nvim-lua/plenary.nvim' } }
     use {
@@ -38,12 +38,6 @@ require('packer').startup {
       requires = { 'nvim-lua/plenary.nvim' },
       config = function()
         require('gitsigns').setup {}
-      end,
-    }
-    use {
-      'folke/which-key.nvim',
-      config = function()
-        require('which-key').setup()
       end,
     }
     -- FIXME conflicts with which-key.nvim
@@ -129,17 +123,17 @@ require('packer').startup {
     }
     use {
       'akinsho/nvim-bufferline.lua',
-      requires = { 'kyazdani42/nvim-web-devicons', 'folke/which-key.nvim' },
+      requires = { 'kyazdani42/nvim-web-devicons' },
       config = function()
         require'bufferline'.setup {}
         local wk = require('which-key')
 
-        wk.register({
+        wk.register {
           [']b'] = { '<cmd>BufferLineCycleNext<cr>', 'Next buffer' },
           ['[b'] = { '<cmd>BufferLineCyclePrev<cr>', 'Previous buffer' },
           [']t'] = { '<cmd>tabnext<cr>', 'Next tab' },
           ['[t'] = { '<cmd>tabprevious<cr>', 'Previous tab' },
-        })
+        }
       end,
     }
     use {
@@ -163,38 +157,40 @@ require('packer').startup {
     use 'hashivim/vim-terraform'
     use 'tsandall/vim-rego'
     use {
-      'svermeulen/vimpeccable',
+      'folke/which-key.nvim',
       config = function()
-        local vimp = require('vimp')
-        vimp.nnoremap('<leader>r', require('vimrc.utils').reload)
+        local wk = require('which-key')
 
-        vimp.inoremap('jk', '<Esc>')
-        vimp.vnoremap('jk', '<Esc>')
+        wk.setup()
+        wk.register({ ['<leader>r'] = { require('vimrc.utils').reload, 'Reload config' } })
 
-        vimp.cnoremap('<C-a>', '<Home>')
-        vimp.cnoremap('<C-e>', '<End>')
+        vim.api.nvim_set_keymap('i', 'jk', '<Esc>', {})
+        vim.api.nvim_set_keymap('v', 'jk', '<Esc>', {})
 
-        vimp.nnoremap('<C-h>', '<C-w>h')
-        vimp.nnoremap('<C-j>', '<C-w>j')
-        vimp.nnoremap('<C-k>', '<C-w>k')
-        vimp.nnoremap('<C-l>', '<C-w>l')
+        vim.api.nvim_set_keymap('c', '<C-a>', '<Home>', {})
+        vim.api.nvim_set_keymap('c', '<C-e>', '<End>', {})
 
-        vimp.nnoremap('Y', 'y$')
+        vim.api.nvim_set_keymap('n', '<C-h>', '<C-w>h', {})
+        vim.api.nvim_set_keymap('n', '<C-j>', '<C-w>j', {})
+        vim.api.nvim_set_keymap('n', '<C-k>', '<C-w>k', {})
+        vim.api.nvim_set_keymap('n', '<C-l>', '<C-w>l', {})
 
-        vimp.nnoremap('<leader>y', '"+y')
-        vimp.vnoremap('<leader>y', '"+y')
-        vimp.nnoremap('<leader>Y', '"+y$')
+        vim.api.nvim_set_keymap('n', 'Y', 'y$', {})
 
-        vimp.nnoremap('<leader>p', '"+p')
-        vimp.vnoremap('<leader>p', '"+p')
-        vimp.nnoremap('<leader>P', '"+P')
+        vim.api.nvim_set_keymap('n', '<leader>y', '"+y', {})
+        vim.api.nvim_set_keymap('v', '<leader>y', '"+y', {})
+        vim.api.nvim_set_keymap('n', '<leader>Y', '"+y$', {})
 
-        vimp.nnoremap({ 'override', 'silent' }, '<C-s>', '<cmd>update<cr>')
-        vimp.inoremap({ 'override', 'silent' }, '<C-s>', '<cmd>update<cr>')
-        vimp.vnoremap({ 'override', 'silent' }, '<C-s>', '<cmd>update<cr>')
+        vim.api.nvim_set_keymap('n', '<leader>p', '"+p', {})
+        vim.api.nvim_set_keymap('v', '<leader>p', '"+p', {})
+        vim.api.nvim_set_keymap('n', '<leader>P', '"+P', {})
 
-        vimp.inoremap({ 'silent' }, '<C-z>', '<cmd>stop<cr>')
-        vimp.vnoremap({ 'silent' }, '<C-z>', '<cmd>stop<cr>')
+        vim.api.nvim_set_keymap('i', '<C-s>', '<cmd>update<cr>', { silent = true })
+        vim.api.nvim_set_keymap('v', '<C-s>', '<cmd>update<cr>', { silent = true })
+        vim.api.nvim_set_keymap('n', '<C-s>', '<cmd>update<cr>', { silent = true })
+
+        vim.api.nvim_set_keymap('i', '<C-z>', '<cmd>stop<cr>', { silent = true })
+        vim.api.nvim_set_keymap('v', '<C-z>', '<cmd>stop<cr>', { silent = true })
       end,
     }
 
@@ -204,9 +200,7 @@ require('packer').startup {
     require('vimrc.completion')(use)
     require('vimrc.treesitter')(use)
 
-    vim.api.nvim_command([[
-      autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank()
-    ]])
+    vim.api.nvim_command([[autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank()]])
   end,
   config = {
     display = {

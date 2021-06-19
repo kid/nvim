@@ -32,8 +32,12 @@ return function(use)
       vim.wo.foldmethod = 'expr'
       vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
 
-      vim.api.nvim_set_keymap('n', '<Tab>', [[@=(foldlevel('.')?'za':"\<Tab>")<CR>]],
-                              { expr = false, noremap = true, silent = true })
+      vim.api.nvim_set_keymap(
+        'n', '<Tab>', [[@=(foldlevel('.')?'za':"\<Tab>")<CR>]], { expr = false, noremap = true, silent = true })
+
+      local wk = require('which-key')
+
+      wk.register { gnn = 'Init selection', grn = 'Increase node', grm = 'Decrease node', grc = 'Increase scope' }
     end,
   }
 end

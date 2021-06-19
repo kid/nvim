@@ -2,7 +2,7 @@ return function(use)
   use {
     'neovim/nvim-lspconfig',
     requires = {
-      'onsails/lspkind-nvim', 'kosayoda/nvim-lightbulb', 'folke/which-key.nvim', 'folke/lsp-colors.nvim',
+      'onsails/lspkind-nvim', 'kosayoda/nvim-lightbulb', 'folke/lsp-colors.nvim',
       'folke/trouble.nvim', 'simrat39/rust-tools.nvim',
     },
     rocks = { 'luaformatter', server = 'https://luarocks.org/dev' },
