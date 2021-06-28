@@ -37,10 +37,18 @@ require('packer').startup {
       'TimUntersberger/neogit',
       requires = { 'nvim-lua/plenary.nvim', 'sindrets/diffview.nvim' },
       config = function()
-        require('neogit').setup {
+        local neogit = require('neogit')
+        neogit.setup {
           disable_comit_confirmation = true,
           integrations = {
             diffview = true,
+          },
+        }
+
+        require('which-key').register {
+          g = {
+            name = '+git',
+            g = { neogit.open, 'Neogit', }
           },
         }
       end
