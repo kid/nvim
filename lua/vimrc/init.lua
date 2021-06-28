@@ -214,6 +214,7 @@ require('packer').startup {
       end,
     }
 
+    require('vimrc.orgmode')(use)
     require('vimrc.fuzzy')(use)
     require('vimrc.statusline')(use)
     require('vimrc.lsp')(use)

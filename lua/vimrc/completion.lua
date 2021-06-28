@@ -36,7 +36,15 @@ local config = function()
     autocomplete = true,
     preselect = 'enable',
 
-    source = { path = true, buffer = true, vsnip = true, nvim_lsp = true, nvim_lua = true, spell = true },
+    source = {
+      path = true,
+      buffer = true,
+      vsnip = true,
+      nvim_lsp = true,
+      nvim_lua = true,
+      spell = true,
+      orgmode = packer_plugins['orgmode.nvim'] ~= nil,
+    },
   }
 
   vim.o.completeopt = 'menuone,noselect'
