@@ -46,7 +46,7 @@ require('packer').startup {
         }
 
         require('which-key').register {
-          g = {
+          ['<leader>g'] = {
             name = '+git',
             g = { neogit.open, 'Neogit', }
           },
