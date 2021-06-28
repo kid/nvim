@@ -39,7 +39,7 @@ require('packer').startup {
       config = function()
         local neogit = require('neogit')
         neogit.setup {
-          disable_comit_confirmation = true,
+          disable_commit_confirmation = true,
           integrations = {
             diffview = true,
           },
