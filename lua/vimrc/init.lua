@@ -45,10 +45,14 @@ require('packer').startup {
           },
         }
 
+        function open()
+          neogit.open { kind = 'vsplit' }
+        end
+
         require('which-key').register {
           ['<leader>g'] = {
             name = '+git',
-            g = { neogit.open, 'Neogit', }
+            g = { open, 'Neogit', }
           },
         }
       end
