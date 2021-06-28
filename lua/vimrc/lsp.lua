@@ -2,8 +2,11 @@ return function(use)
   use {
     'neovim/nvim-lspconfig',
     requires = {
-      'onsails/lspkind-nvim', 'kosayoda/nvim-lightbulb', 'folke/lsp-colors.nvim',
-      'folke/trouble.nvim', 'simrat39/rust-tools.nvim',
+      'onsails/lspkind-nvim',
+      'kosayoda/nvim-lightbulb',
+      'folke/lsp-colors.nvim',
+      'folke/trouble.nvim',
+      'simrat39/rust-tools.nvim',
     },
     rocks = { 'luaformatter', server = 'https://luarocks.org/dev' },
     config = function()
@@ -11,13 +14,17 @@ return function(use)
 
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities.textDocument.completion.completionItem.snippetSupport = true
-      capabilities.textDocument.completion.completionItem.resolveSupport =
-        { properties = { 'additionalTextEdits', 'detail', 'documentation' } }
+      capabilities.textDocument.completion.completionItem.resolveSupport = {
+        properties = { 'additionalTextEdits', 'detail', 'documentation' },
+      }
 
       require('rust-tools').setup {
         server = {
           capabilities = capabilities,
-          settings = { ['rust-analyzer'] = { assist = { importMergeBehavior = 'last' }, procMacro = { enable = true } } },
+          settings = { ['rust-analyzer'] = {
+            assist = { importMergeBehavior = 'last' },
+            procMacro = { enable = true } }
+          },
         },
       }
 
@@ -32,7 +39,10 @@ return function(use)
               path = vim.split(package.path, ';'),
             },
             workspace = {
-              library = { [vim.fn.expand('$VIMRUNTIME/lua')] = true, [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true },
+              library = {
+                [vim.fn.expand('$VIMRUNTIME/lua')] = true,
+                [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true
+              },
             },
           },
         },
@@ -63,7 +73,14 @@ return function(use)
       lspconfig.efm.setup {
         init_options = { documentFormatting = true },
         filetypes = {
-          'lua', 'rego', 'javascript', 'javascriptreact', 'javascript.jsx', 'typescript', 'typescriptreact', 'typescript.jsx',
+          'lua',
+          'rego',
+          'javascript',
+          'javascriptreact',
+          'javascript.jsx',
+          'typescript',
+          'typescriptreact',
+          'typescript.jsx',
         },
         settings = {
           languages = {
