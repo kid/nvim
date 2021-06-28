@@ -33,8 +33,18 @@ require('packer').startup {
       end,
     }
     use { 'skanehira/gh.vim' }
-    use { 'sindrets/diffview.nvim' }
-    use { 'TimUntersberger/neogit', requires = { 'nvim-lua/plenary.nvim' } }
+    use {
+      'TimUntersberger/neogit',
+      requires = { 'nvim-lua/plenary.nvim', 'sindrets/diffview.nvim' },
+      config = function()
+        require('neogit').setup {
+          disable_comit_confirmation = true,
+          integrations = {
+            diffview = true,
+          },
+        }
+      end
+    }
     use {
       'lewis6991/gitsigns.nvim',
       requires = { 'nvim-lua/plenary.nvim' },
