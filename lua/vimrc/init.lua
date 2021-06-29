@@ -120,6 +120,8 @@ require('packer').startup {
         -- Allow mouse support
         vim.o.mouse = 'a'
 
+        vim.opt.splitright = true
+
         -- Incremental search and search/replace
         vim.o.incsearch = true
         vim.o.inccommand = 'nosplit'
