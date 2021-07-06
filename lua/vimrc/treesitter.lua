@@ -26,7 +26,7 @@ return function(use)
             -- list_definitions = 'gnD'          -- mapping to list all definitions in current file
           },
         },
-        ensure_installed = 'all',
+        ensure_installed = 'maintained',
       }
 
       vim.wo.foldmethod = 'expr'
