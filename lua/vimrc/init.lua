@@ -32,30 +32,26 @@ require('packer').startup {
         }
       end,
     }
+    use {
+      'https://gitlab.com/yorickpeterse/nvim-window.git',
+      config = function()
+        require('which-key').register { ['<leader>w'] = { require('nvim-window').pick, 'Pick window' } }
+      end,
+    }
     use { 'skanehira/gh.vim' }
     use {
       'TimUntersberger/neogit',
       requires = { 'nvim-lua/plenary.nvim', 'sindrets/diffview.nvim' },
       config = function()
         local neogit = require('neogit')
-        neogit.setup {
-          disable_commit_confirmation = true,
-          integrations = {
-            diffview = true,
-          },
-        }
+        neogit.setup { disable_commit_confirmation = true, integrations = { diffview = true } }
 
         function open()
           neogit.open { kind = 'vsplit' }
         end
 
-        require('which-key').register {
-          ['<leader>g'] = {
-            name = '+git',
-            g = { open, 'Neogit', }
-          },
-        }
-      end
+        require('which-key').register { ['<leader>g'] = { name = '+git', g = { open, 'Neogit' } } }
+      end,
     }
     use {
       'lewis6991/gitsigns.nvim',
