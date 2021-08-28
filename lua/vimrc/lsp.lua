@@ -49,6 +49,7 @@ return function(use)
       }
 
       lspconfig.gopls.setup {}
+      lspconfig.ansiblels.setup{}
 
       lspconfig.tsserver.setup {
         capabilities = capabilities,
@@ -96,7 +97,7 @@ return function(use)
         },
       }
 
-      lspconfig.yamlls.setup { settings = { ['yaml.schemas'] = { kubernetes = '/*.yaml' } } }
+      -- lspconfig.yamlls.setup { settings = { ['yaml.schemas'] = { kubernetes = '/*.yaml' } } }
 
       require('lspkind').init()
       require('lsp-colors').setup()
