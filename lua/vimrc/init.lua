@@ -173,11 +173,19 @@ require('packer').startup {
       config = function()
         vim.g.nvim_tree_gitignore = 1
         vim.g.nvim_tree_git_hl = 1
-        vim.g.nvim_tree_follow = 1
-        vim.g.nvim_tree_auto_close = 1
-        vim.g.nvim_tree_disable_netrw = 1
         vim.g.nvim_tree_indent_markers = 1
         vim.g.nvim_tree_show_icons = { git = 0, files = 1, folders = 1 }
+
+        require('nvim-tree').setup{
+          disable_netrw = true,
+          lsp_diagnostics = true,
+          update_forcused_file  = {
+            enable = true,
+          },
+          view = {
+            auto_resize = true,
+          },
+        }
 
         vim.api.nvim_set_keymap('n', '<leader>n', ':NvimTreeToggle<CR>', { noremap = true })
       end,
