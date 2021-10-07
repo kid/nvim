@@ -12,12 +12,7 @@ return function(use)
     config = function()
       local lspconfig = require('lspconfig')
 
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
-      capabilities.textDocument.completion.completionItem.snippetSupport = true
-      capabilities.textDocument.completion.completionItem.resolveSupport = {
-        properties = { 'additionalTextEdits', 'detail', 'documentation' },
-      }
-
+      local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
       require('rust-tools').setup {
         server = {
           capabilities = capabilities,

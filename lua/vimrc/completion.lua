@@ -1,71 +1,66 @@
-local t = function(str)
-  return vim.api.nvim_replace_termcodes(str, true, true, true)
-end
-
-local check_back_space = function()
-  local col = vim.fn.col('.') - 1
-  return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s')
-end
-
-_G.tab_complete = function()
-  if vim.fn.pumvisible() == 1 then
-    return t '<C-n>'
-  elseif vim.fn.call('vsnip#available', { 1 }) == 1 then
-    return t '<Plug>(vsnip-expand-or-jump)'
-  elseif check_back_space() then
-    return t '<Tab>'
-  else
-    return vim.fn['compe#complete']()
-  end
-end
-
-_G.s_tab_complete = function()
-  if vim.fn.pumvisible() == 1 then
-    return t '<C-p>'
-  elseif vim.fn.call('vsnip#jumpable', { -1 }) == 1 then
-    return t '<Plug>(vsnip-jump-prev)'
-  else
-    return t '<S-Tab>'
-  end
-end
-
 local config = function()
-  local compe = require('compe')
-  compe.setup {
-    enabled = true,
-    autocomplete = true,
-    preselect = 'enable',
+  local cmp = require('cmp')
+  local luasnip = require('luasnip')
 
-    source = {
-      path = true,
-      buffer = true,
-      vsnip = true,
-      nvim_lsp = true,
-      nvim_lua = true,
-      spell = true,
-      orgmode = packer_plugins['orgmode.nvim'] ~= nil,
+  local has_words_before = function()
+    if vim.api.nvim_buf_get_option(0, 'buftype') == 'prompt' then return false end
+    local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+    return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') == nil
+  end
+
+  local feedkey = function(key)
+    local test = vim.api.nvim_replace_termcodes(key, true, true, true)
+    vim.api.nvim_feedkeys(test, 'n', true)
+  end
+
+  cmp.setup {
+    completion = { autocomplete = false },
+    snippet = {
+      expand = function(args)
+        require('luasnip').lsp_expand(args.body)
+      end,
+    },
+    sources = {
+      -- sources in order of priority
+      { name = 'nvim_lsp' },
+      { name = 'luasnip' },
+      { name = 'orgmode' },
+      { name = 'buffer' },
+    },
+    mapping = {
+      ['<C-e>'] = cmp.mapping.close(),
+      ['<C-Space>'] = cmp.mapping.complete(),
+      ['<CR>'] = cmp.mapping.confirm({ select = true }),
+      ['<Tab>'] = cmp.mapping(
+        function(fallback)
+          if vim.fn.pumvisible() == 1 then
+            feedkey('<C-n>')
+          elseif luasnip.expand_or_jumpable() then
+            luasnip.expand_or_jump()
+          elseif has_words_before() then
+            cmp.complete()
+          else
+            fallback()
+          end
+        end, { 'i', 's' }),
+      ['<S-Tab>'] = cmp.mapping(
+        function(fallback)
+          if vim.fn.pumvisible() == 1 then
+            feedkey('<C-p>')
+          elseif luasnip.jumpable(-1) then
+            luasnip.jump(-1)
+          else
+            fallback()
+          end
+        end, { 'i', 's' }),
     },
   }
-
-  vim.o.completeopt = 'menuone,noselect'
-
-  vim.api.nvim_set_keymap('i', '<Tab>', 'v:lua.tab_complete()', { expr = true })
-  vim.api.nvim_set_keymap('s', '<Tab>', 'v:lua.tab_complete()', { expr = true })
-  vim.api.nvim_set_keymap('i', '<S-Tab>', 'v:lua.s_tab_complete()', { expr = true })
-  vim.api.nvim_set_keymap('s', '<S-Tab>', 'v:lua.s_tab_complete()', { expr = true })
-  vim.api.nvim_set_keymap('i', '<CR>', 'compe#confirm("<CR>")', { expr = true })
-
-  require('snippets').use_suggested_mappings()
-
-  -- local k = require('astronauta.keymap')
-
-  -- k.iremap { '<Tab>', tab_complete }
-  -- k.sremap { '<Tab>', tab_complete }
-  -- k.iremap { '<S-Tab>', s_tab_complete }
-  -- k.sremap { '<S-Tab>', s_tab_complete }
-  -- k.inoremap { '<CR>', function () compe.confirm('<CR>') end, silent = true }
 end
 
 return function(use)
-  use { 'hrsh7th/nvim-compe', requires = { 'hrsh7th/vim-vsnip', 'norcalli/snippets.nvim' }, config = config }
+  use {
+    'hrsh7th/nvim-cmp',
+    requires = { 'hrsh7th/cmp-buffer', 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
+    config = config,
+  }
 end
