@@ -191,7 +191,11 @@ require('packer').startup {
       end,
     }
     use 'towolf/vim-helm'
-    use 'pearofducks/ansible-vim'
+    use {
+      'pearofducks/ansible-vim', config = function ()
+        vim.g.ansible_unindent_after_newline = 1
+      end,
+    }
     use 'google/vim-jsonnet'
     use 'hashivim/vim-terraform'
     use 'tsandall/vim-rego'
