@@ -27,6 +27,9 @@ local config = function()
       { name = 'orgmode' },
       { name = 'buffer' },
     },
+    formatting = {
+      format = require('lspkind').cmp_format(),
+    },
     mapping = {
       ['<C-e>'] = cmp.mapping.close(),
       ['<C-Space>'] = cmp.mapping.complete(),
