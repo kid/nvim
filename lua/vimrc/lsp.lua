@@ -30,7 +30,7 @@ return function(use)
           Lua = {
             diagnostics = { globals = { 'vim' } },
             runtime = {
-              -- version = 'LuaJIT',
+              version = 'LuaJIT',
               path = vim.split(package.path, ';'),
             },
             workspace = {
@@ -117,7 +117,7 @@ return function(use)
           a = { builtin.lsp_code_actions, 'Actions' },
           f = { vim.lsp.buf.formatting, 'Format' },
         },
-      }, { noremap = true })
+      }, { noremap = true, silent = true })
 
       wk.register({ ['<leader>ca'] = { builtin.lsp_range_code_actions, 'Actions' } },
                   { noremap = true, mode = 'v' })
