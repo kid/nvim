@@ -1,6 +1,7 @@
 return function(use)
   use {
     'nvim-treesitter/nvim-treesitter',
+    require = { 'JoosepAlviste/nvim-ts-context-commentstring' },
     run = ':TSUpdate',
     config = function()
       require'nvim-treesitter.configs'.setup {
@@ -25,6 +26,9 @@ return function(use)
             -- goto_definition = 'gnd',          -- mapping to go to definition of symbol under cursor
             -- list_definitions = 'gnD'          -- mapping to list all definitions in current file
           },
+        },
+        context_commentstring = {
+          enable = true
         },
         ensure_installed = 'maintained',
       }

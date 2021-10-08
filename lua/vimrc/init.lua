@@ -17,11 +17,17 @@ require('packer').startup {
     -- let packer manage itself
     use { 'wbthomason/packer.nvim', opt = true }
     use 'editorconfig/editorconfig-vim'
-    use 'tpope/vim-commentary'
     use 'tpope/vim-surround'
     use 'tpope/vim-fugitive'
     use 'tpope/vim-rhubarb'
     use 'tpope/vim-repeat'
+    use {
+      'numToStr/Comment.nvim',
+      requires = {  },
+      config = function()
+        require('Comment').setup()
+      end
+    }
     use {
       'ggandor/lightspeed.nvim',
       config = function()
