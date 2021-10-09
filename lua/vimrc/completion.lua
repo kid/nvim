@@ -14,7 +14,6 @@ local config = function()
   end
 
   cmp.setup {
-    completion = { autocomplete = false },
     snippet = {
       expand = function(args)
         require('luasnip').lsp_expand(args.body)
@@ -25,15 +24,13 @@ local config = function()
       { name = 'nvim_lsp' },
       { name = 'luasnip' },
       { name = 'orgmode' },
+      { name = 'path' },
       { name = 'buffer' },
     },
-    formatting = {
-      format = require('lspkind').cmp_format(),
-    },
+    formatting = { format = require('lspkind').cmp_format() },
     mapping = {
       ['<C-e>'] = cmp.mapping.close(),
       ['<C-Space>'] = cmp.mapping.complete(),
-      ['<CR>'] = cmp.mapping.confirm({ select = true }),
       ['<Tab>'] = cmp.mapping(
         function(fallback)
           if cmp.visible() then
@@ -58,12 +55,22 @@ local config = function()
         end, { 'i', 's' }),
     },
   }
+
+  require('nvim-autopairs').setup()
+  require('nvim-autopairs.completion.cmp').setup({ map_cr = true, map_complete = true, auto_select = false })
 end
 
 return function(use)
   use {
     'hrsh7th/nvim-cmp',
-    requires = { 'hrsh7th/cmp-buffer', 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
+    requires = {
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-path',
+      'hrsh7th/cmp-nvim-lsp',
+      'L3MON4D3/LuaSnip',
+      'saadparwaiz1/cmp_luasnip',
+      'windwp/nvim-autopairs',
+    },
     config = config,
   }
 end
