@@ -5,7 +5,10 @@ return function(use)
     run = ':TSUpdate',
     config = function()
       require'nvim-treesitter.configs'.setup {
-        highlight = { enable = true },
+        highlight = {
+          enable = true,
+          additional_vim_regex_highlighting = {'org'},
+        },
         incremental_selection = {
           enable = true,
           keymaps = {
@@ -30,7 +33,7 @@ return function(use)
         context_commentstring = {
           enable = true
         },
-        ensure_installed = 'maintained',
+        ensure_installed = { 'bash', 'dockerfile', 'go', 'javascript', 'json', 'json5', 'lua', 'nix', 'regex', 'ruby', 'rust', 'org', },
       }
 
       vim.wo.foldmethod = 'expr'
