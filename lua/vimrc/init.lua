@@ -188,7 +188,9 @@ require('packer').startup {
 
         require('nvim-tree').setup{
           disable_netrw = true,
-          lsp_diagnostics = true,
+          diagnostics = {
+            enable = true,
+          },
           update_forcused_file  = {
             enable = true,
           },
