@@ -54,6 +54,12 @@ require('packer').startup {
         require('which-key').register { ['<leader>w'] = { require('nvim-window').pick, 'Pick window' } }
       end,
     }
+    use {
+      'chentau/marks.nvim',
+      config = function()
+        require('marks').setup{}
+      end,
+    }
     use { 'skanehira/gh.vim' }
     use {
       'TimUntersberger/neogit',
