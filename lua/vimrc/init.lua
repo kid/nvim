@@ -25,7 +25,11 @@ require('packer').startup {
       'numToStr/Comment.nvim',
       requires = {  },
       config = function()
-        require('Comment').setup()
+        require('Comment').setup {
+          mappings = {
+            extended = true,
+          },
+        }
       end
     }
     use {
@@ -152,6 +156,9 @@ require('packer').startup {
 
         -- Highlight while searching
         -- vim.o.hlsearch = true
+
+        -- Don't insert comments when hitting 'o' or 'O'
+        vim.o.formatoptions -= 'o'
 
         vim.o.foldlevelstart = 10
 
