@@ -158,7 +158,7 @@ require('packer').startup {
         -- vim.o.hlsearch = true
 
         -- Don't insert comments when hitting 'o' or 'O'
-        vim.o.formatoptions -= 'o'
+        vim.opt.formatoptions:remove('o')
 
         vim.o.foldlevelstart = 10
 
