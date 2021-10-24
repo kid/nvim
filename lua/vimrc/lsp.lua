@@ -65,6 +65,21 @@ return function(use)
         formatStdin = true,
       }
 
+      local shellcheck = {
+        lintCommand = 'shellcheck -f gcc -x',
+        lintSource = 'shellcheck',
+        lintFormats = {
+          '%f:%l:%c: %trror: %m',
+          '%f:%l:%c: %tarning: %m',
+          '%f:%l:%c: %tote: %m',
+        }
+      }
+
+      local shfmt = {
+        formatCommand = 'shfmt -s -ci -bn',
+        formatStdin = true,
+      }
+
       lspconfig.efm.setup {
         init_options = { documentFormatting = true },
         filetypes = {
@@ -76,6 +91,7 @@ return function(use)
           'typescript',
           'typescriptreact',
           'typescript.jsx',
+          'sh'
         },
         settings = {
           languages = {
@@ -87,6 +103,7 @@ return function(use)
             typescript = { eslint },
             typescriptreact = { eslint },
             ['typescript.tsx'] = { eslint },
+            sh = { shellcheck, shfmt },
           },
         },
       }
