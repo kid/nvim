@@ -12,10 +12,7 @@ function Config()
     filetype = 'org',
   }
 
-  require('orgmode').setup {
-    org_agenda_files = { folder .. '/**/*' },
-    org_default_notes_file = folder .. '/notes.org'
-  }
+  require('orgmode').setup { org_agenda_files = { folder .. '/**/*' }, org_default_notes_file = folder .. '/notes.org' }
 
   require('org-bullets').setup()
   require('headlines').setup()
@@ -24,7 +21,7 @@ end
 return function(use)
   use {
     'kristijanhusak/orgmode.nvim',
-    requires = { 'akinsho/org-bullets.nvim', 'lukas-reineke/headlines.nvim' },
-    config = Config
+    requires = { 'akinsho/org-bullets.nvim', 'lukas-reineke/headlines.nvim', 'dhruvasagar/vim-table-mode' },
+    config = Config,
   }
 end
