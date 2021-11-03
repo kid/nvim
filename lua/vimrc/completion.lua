@@ -14,7 +14,6 @@ local config = function()
   end
 
   cmp.setup {
-    preselect = cmp.PreselectMode.None,
     snippet = {
       expand = function(args)
         require('luasnip').lsp_expand(args.body)
@@ -24,14 +23,19 @@ local config = function()
       -- sources in order of priority
       { name = 'nvim_lsp' },
       { name = 'luasnip' },
-      { name = 'orgmode' },
       { name = 'path' },
       { name = 'buffer' },
+      { name = 'orgmode' },
     },
     formatting = { format = require('lspkind').cmp_format() },
     mapping = {
-      ['<C-e>'] = cmp.mapping.close(),
-      ['<C-Space>'] = cmp.mapping.complete(),
+      ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c'}),
+      ['<C-n>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+      ['<C-p>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
+      ['<C-e>'] = cmp.mapping({
+        i = cmp.mapping.abort(),
+        c = cmp.mapping.close(),
+      }),
       ['<Tab>'] = cmp.mapping(
         function(fallback)
           if cmp.visible() then
@@ -47,7 +51,7 @@ local config = function()
       ['<S-Tab>'] = cmp.mapping(
         function(fallback)
           if cmp.visible() then
-            feedkey('<C-p>')
+            cmp.select_prev_item()
           elseif luasnip.jumpable(-1) then
             luasnip.jump(-1)
           else
@@ -57,14 +61,30 @@ local config = function()
     },
   }
 
+  cmp.setup.cmdline('/', {
+    sources = {
+      { name = 'buffer' }
+    }
+  })
+
+  cmp.setup.cmdline(':', {
+    sources = cmp.config.sources({
+      { name = 'path' },
+    }, {
+      { name = 'cmdline' },
+    })
+  })
+
   require('nvim-autopairs').setup()
-  require('nvim-autopairs.completion.cmp').setup({ map_cr = true, map_complete = true, auto_select = false })
+  local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+  cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done({ map_char = { text = '' }}))
 end
 
 return function(use)
   use {
     'hrsh7th/nvim-cmp',
     requires = {
+      'hrsh7th/cmp-cmdline',
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-path',
       'hrsh7th/cmp-nvim-lsp',
