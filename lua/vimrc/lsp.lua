@@ -125,7 +125,9 @@ return function(use)
       vim.fn.sign_define('LightBulbSign', { text = '💡', texthl = 'LspDiagnosticsSignInformation' })
 
       local lsp_signature = require('lsp_signature')
-      lsp_signature.setup {}
+      lsp_signature.setup {
+        floating_window_above_cur_line = true,
+      }
     end,
   }
 end
