@@ -114,6 +114,7 @@ return function(use)
             name = '+code',
             a = { builtin.lsp_code_actions, 'Actions' },
             f = { vim.lsp.buf.formatting, 'Format' },
+            r = { vim.lsp.buf.rename, 'Rename' },
           },
         }, { noremap = true, silent = true })
 
