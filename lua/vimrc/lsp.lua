@@ -33,8 +33,17 @@ return function(use)
         },
       }
 
-      lspconfig.gopls.setup {}
-      lspconfig.ansiblels.setup {}
+      lspconfig.rnix.setup {
+        capabilities = capabilities,
+      }
+
+      lspconfig.gopls.setup {
+        capabilities =  capabilities,
+      }
+
+      lspconfig.ansiblels.setup {
+        capabilities = capabilities,
+      }
 
       lspconfig.tsserver.setup {
         capabilities = capabilities,
