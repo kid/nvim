@@ -251,6 +251,13 @@ require('packer').startup {
         vim.api.nvim_set_keymap('v', '<C-z>', '<cmd>stop<cr>', { silent = true })
       end,
     }
+    use {
+      'norcalli/nvim-colorizer.lua',
+      config = function()
+        vim.o.termguicolors = true
+        require('colorizer').setup()
+      end,
+    }
 
     require('vimrc.orgmode')(use)
     require('vimrc.fuzzy')(use)
