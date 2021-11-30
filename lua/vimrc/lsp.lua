@@ -106,7 +106,10 @@ return function(use)
 
       require('lspkind').init()
       require('lsp-colors').setup()
-      require('trouble').setup()
+      require('trouble').setup {
+        indent_lines = true,
+        use_lsp_diagnostic_signs = true,
+      }
 
       local builtin = require('telescope.builtin')
       local wk = require('which-key')

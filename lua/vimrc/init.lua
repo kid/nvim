@@ -162,7 +162,7 @@ require('packer').startup {
       config = function()
         vim.g.indent_blankline_char = '│'
         vim.g.indent_blankline_use_treesitter = true
-        vim.g.indent_blankline_filetype_exclude = { 'NvimTree', 'man' }
+        vim.g.indent_blankline_filetype_exclude = { 'NvimTree', 'Trouble', 'man' }
       end,
     }
     use {
