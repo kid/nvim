@@ -60,13 +60,13 @@ require('packer').startup {
       requires = { 'nvim-lua/plenary.nvim', 'sindrets/diffview.nvim' },
       config = function()
         local neogit = require('neogit')
-        neogit.setup { disable_commit_confirmation = true, integrations = { diffview = true } }
+        neogit.setup {
+          kind = "tab",
+          disable_commit_confirmation = true,
+          integrations = { diffview = true }
+        }
 
-        function open()
-          neogit.open { kind = 'vsplit' }
-        end
-
-        require('which-key').register { ['<leader>g'] = { name = '+git', g = { open, 'Neogit' } } }
+        require('which-key').register { ['<leader>g'] = { name = '+git', g = { neogit.open, 'Neogit' } } }
       end,
     }
     use {
