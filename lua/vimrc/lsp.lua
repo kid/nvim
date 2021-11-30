@@ -47,6 +47,11 @@ return function(use)
 
       lspconfig.hls.setup {
         capabilities = capabilities,
+        settings = {
+          haskell = {
+            formattingProvider = 'fourmolu',
+          }
+        }
       }
 
       lspconfig.tsserver.setup {

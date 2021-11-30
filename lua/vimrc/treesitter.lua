@@ -33,7 +33,7 @@ return function(use)
         context_commentstring = {
           enable = true
         },
-        ensure_installed = { 'bash', 'dockerfile', 'go', 'javascript', 'json', 'json5', 'lua', 'nix', 'regex', 'ruby', 'rust', 'org', },
+        ensure_installed = { 'bash', 'dockerfile', 'go', 'javascript', 'json', 'json5', 'lua', 'nix', 'regex', 'ruby', 'rust', 'haskell', 'org', },
       }
 
       vim.wo.foldmethod = 'expr'
