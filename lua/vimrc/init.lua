@@ -184,7 +184,6 @@ require('packer').startup {
       'kyazdani42/nvim-tree.lua',
       requires = { 'kyazdani42/nvim-web-devicons' },
       config = function()
-        vim.g.nvim_tree_gitignore = 1
         vim.g.nvim_tree_git_hl = 1
         vim.g.nvim_tree_indent_markers = 1
         vim.g.nvim_tree_show_icons = { git = 0, files = 1, folders = 1 }
