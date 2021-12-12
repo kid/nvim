@@ -113,7 +113,7 @@ return function(use)
       require('lsp-colors').setup()
       require('trouble').setup {
         indent_lines = true,
-        use_lsp_diagnostic_signs = true,
+        use_diagnostic_signs = true,
       }
 
       local builtin = require('telescope.builtin')
