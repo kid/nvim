@@ -22,15 +22,20 @@ require('packer').startup {
     use 'tpope/vim-rhubarb'
     use 'tpope/vim-repeat'
     use {
-      'numToStr/Comment.nvim',
-      requires = {  },
+      'startup-nvim/startup.nvim',
+      requires = { 'nvim-telescope/telescope.nvim', 'nvim-lua/plenary.nvim' },
       config = function()
-        require('Comment').setup {
-          mappings = {
-            extended = true,
-          },
+        require('startup').setup {
+          theme = 'startify',
         }
-      end
+      end,
+    }
+    use {
+      'numToStr/Comment.nvim',
+      requires = {},
+      config = function()
+        require('Comment').setup { mappings = { extended = true } }
+      end,
     }
     use {
       'ggandor/lightspeed.nvim',
@@ -51,7 +56,7 @@ require('packer').startup {
     use {
       'chentau/marks.nvim',
       config = function()
-        require('marks').setup{}
+        require('marks').setup {}
       end,
     }
     use { 'skanehira/gh.vim' }
@@ -60,11 +65,7 @@ require('packer').startup {
       requires = { 'nvim-lua/plenary.nvim', 'sindrets/diffview.nvim' },
       config = function()
         local neogit = require('neogit')
-        neogit.setup {
-          kind = "tab",
-          disable_commit_confirmation = true,
-          integrations = { diffview = true }
-        }
+        neogit.setup { kind = 'tab', disable_commit_confirmation = true, integrations = { diffview = true } }
 
         require('which-key').register { ['<leader>g'] = { name = '+git', g = { neogit.open, 'Neogit' } } }
       end,
@@ -162,7 +163,7 @@ require('packer').startup {
       config = function()
         vim.g.indent_blankline_char = '│'
         vim.g.indent_blankline_use_treesitter = true
-        vim.g.indent_blankline_filetype_exclude = { 'NvimTree', 'Trouble', 'man' }
+        vim.g.indent_blankline_filetype_exclude = { 'startup', 'NvimTree', 'Trouble', 'man' }
       end,
     }
     use {
@@ -188,17 +189,11 @@ require('packer').startup {
         vim.g.nvim_tree_indent_markers = 1
         vim.g.nvim_tree_show_icons = { git = 0, files = 1, folders = 1 }
 
-        require('nvim-tree').setup{
+        require('nvim-tree').setup {
           disable_netrw = true,
-          diagnostics = {
-            enable = true,
-          },
-          update_forcused_file  = {
-            enable = true,
-          },
-          view = {
-            auto_resize = true,
-          },
+          diagnostics = { enable = true },
+          update_forcused_file = { enable = true },
+          view = { auto_resize = true },
         }
 
         vim.api.nvim_set_keymap('n', '<leader>n', ':NvimTreeToggle<CR>', { noremap = true })
@@ -206,7 +201,8 @@ require('packer').startup {
     }
     use 'towolf/vim-helm'
     use {
-      'pearofducks/ansible-vim', config = function ()
+      'pearofducks/ansible-vim',
+      config = function()
         vim.g.ansible_unindent_after_newline = 1
       end,
     }
