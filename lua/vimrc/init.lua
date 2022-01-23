@@ -21,15 +21,15 @@ require('packer').startup {
     use 'tpope/vim-fugitive'
     use 'tpope/vim-rhubarb'
     use 'tpope/vim-repeat'
-    use {
-      'startup-nvim/startup.nvim',
-      requires = { 'nvim-telescope/telescope.nvim', 'nvim-lua/plenary.nvim' },
-      config = function()
-        require('startup').setup {
-          theme = 'startify',
-        }
-      end,
-    }
+    -- use {
+    --   'startup-nvim/startup.nvim',
+    --   requires = { 'nvim-telescope/telescope.nvim', 'nvim-lua/plenary.nvim' },
+    --   config = function()
+    --     require('startup').setup {
+    --       theme = 'startify',
+    --     }
+    --   end,
+    -- }
     use {
       'numToStr/Comment.nvim',
       requires = {},
