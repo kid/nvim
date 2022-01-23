@@ -40,11 +40,7 @@ require('packer').startup {
     use {
       'ggandor/lightspeed.nvim',
       config = function()
-        require('lightspeed').setup {
-          highlight_unique_chars = true,
-          cycle_group_fwd_key = '<Tab',
-          cycle_group_bwd_key = '<S-Tab>',
-        }
+        require('lightspeed').setup { }
       end,
     }
     use {
