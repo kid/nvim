@@ -121,8 +121,8 @@ return function(use)
 
       wk.register(
         {
-          [']d'] = { vim.lsp.diagnostic.goto_next, 'Next diagnostic' },
-          ['[d'] = { vim.lsp.diagnostic.goto_prev, 'Previous diagnostic' },
+          [']d'] = { vim.diagnostic.goto_next, 'Next diagnostic' },
+          ['[d'] = { vim.diagnostic.goto_prev, 'Previous diagnostic' },
           K = { vim.lsp.buf.hover, 'Lsp Hover' },
           gw = { builtin.lsp_dynamic_workspace_symbols, 'Workspace symbols' },
           g0 = { builtin.lsp_document_symbols, 'Document symbols' },
