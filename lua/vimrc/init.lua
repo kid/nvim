@@ -182,7 +182,6 @@ require('packer').startup {
       requires = { 'kyazdani42/nvim-web-devicons' },
       config = function()
         vim.g.nvim_tree_git_hl = 1
-        vim.g.nvim_tree_indent_markers = 1
         vim.g.nvim_tree_show_icons = { git = 0, files = 1, folders = 1 }
 
         require('nvim-tree').setup {
@@ -190,6 +189,11 @@ require('packer').startup {
           diagnostics = { enable = true },
           update_forcused_file = { enable = true },
           view = { auto_resize = true },
+          renderer = {
+            indent_markers = {
+              enable = true,
+            },
+          },
         }
 
         vim.api.nvim_set_keymap('n', '<leader>n', ':NvimTreeToggle<CR>', { noremap = true })
