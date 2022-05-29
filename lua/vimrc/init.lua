@@ -93,6 +93,8 @@ require('packer').startup {
         vim.g.gruvbox_invert_selection = 0
         vim.api.nvim_command('colorscheme gruvbox')
 
+        vim.o.title = true;
+
         -- Don't wait forever for the next key
         vim.o.timeoutlen = 500
 
