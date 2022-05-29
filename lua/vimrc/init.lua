@@ -183,14 +183,11 @@ require('packer').startup {
       'kyazdani42/nvim-tree.lua',
       requires = { 'kyazdani42/nvim-web-devicons' },
       config = function()
-        vim.g.nvim_tree_git_hl = 1
-        vim.g.nvim_tree_show_icons = { git = 0, files = 1, folders = 1 }
-
         require('nvim-tree').setup {
           disable_netrw = true,
           diagnostics = { enable = true },
-          update_forcused_file = { enable = true },
-          view = { auto_resize = true },
+          update_focused_file = { enable = true },
+          -- view = { auto_resize = true },
           renderer = {
             indent_markers = {
               enable = true,
