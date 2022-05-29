@@ -50,7 +50,7 @@ require('packer').startup {
       end,
     }
     use {
-      'chentau/marks.nvim',
+      'chentoast/marks.nvim',
       config = function()
         require('marks').setup {}
       end,
