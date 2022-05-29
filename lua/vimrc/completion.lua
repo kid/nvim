@@ -23,7 +23,7 @@ local config = function()
       { name = 'orgmode' },
     },
     formatting = { format = require('lspkind').cmp_format() },
-    mapping = {
+    mapping = cmp.mapping.preset.insert({
       ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c'}),
       ['<C-y>'] = cmp.mapping.confirm({ select = true }),
       ['<C-n>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
@@ -54,13 +54,14 @@ local config = function()
             fallback()
           end
         end, { 'i', 's' }),
-    },
+    }),
   }
 
   cmp.setup.cmdline('/', {
     sources = {
-      { name = 'buffer' }
-    }
+      { name = 'buffer' },
+    },
+    mapping = cmp.mapping.preset.cmdline(),
   })
 
   cmp.setup.cmdline(':', {
@@ -68,7 +69,8 @@ local config = function()
       { name = 'path' },
     }, {
       { name = 'cmdline' },
-    })
+    }),
+    mapping = cmp.mapping.preset.cmdline(),
   })
 
   require('nvim-autopairs').setup()
