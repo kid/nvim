@@ -40,7 +40,7 @@ require('packer').startup {
     use {
       'ggandor/lightspeed.nvim',
       config = function()
-        require('lightspeed').setup { }
+        require('lightspeed').setup {}
       end,
     }
     use {
@@ -223,10 +223,10 @@ require('packer').startup {
       end,
     }
     use {
-      'akinsho/nvim-bufferline.lua',
+      'akinsho/bufferline.nvim',
       requires = { 'kyazdani42/nvim-web-devicons' },
       config = function()
-        require'bufferline'.setup {}
+        require('bufferline').setup {}
         local wk = require('which-key')
 
         wk.register {

@@ -24,7 +24,7 @@ local config = function()
     },
     formatting = { format = require('lspkind').cmp_format() },
     mapping = cmp.mapping.preset.insert({
-      ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c'}),
+      ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
       ['<C-y>'] = cmp.mapping.confirm({ select = true }),
       ['<C-n>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
       ['<C-p>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
@@ -75,7 +75,7 @@ local config = function()
 
   require('nvim-autopairs').setup()
   local cmp_autopairs = require('nvim-autopairs.completion.cmp')
-  cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done({ map_char = { text = '' }}))
+  cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done({ map_char = { text = '' } }))
 end
 
 return function(use)

@@ -38,7 +38,7 @@ return function(use)
       }
 
       lspconfig.gopls.setup {
-        capabilities =  capabilities,
+        capabilities = capabilities,
       }
 
       lspconfig.ansiblels.setup {
@@ -82,7 +82,7 @@ return function(use)
       lspconfig.efm.setup {
         init_options = { documentFormatting = true },
         filetypes = {
-          'lua',
+          -- 'lua',
           'rego',
           'javascript',
           'javascriptreact',

@@ -4,10 +4,10 @@ return function(use)
     require = { 'JoosepAlviste/nvim-ts-context-commentstring' },
     run = ':TSUpdate',
     config = function()
-      require'nvim-treesitter.configs'.setup {
+      require('nvim-treesitter.configs').setup {
         highlight = {
           enable = true,
-          additional_vim_regex_highlighting = {'org'},
+          additional_vim_regex_highlighting = { 'org' },
         },
         incremental_selection = {
           enable = true,
