@@ -134,7 +134,9 @@ return function(use)
           ['<leader>c'] = {
             name = '+code',
             a = { builtin.lsp_code_actions, 'Actions' },
-            f = { vim.lsp.buf.formatting, 'Format' },
+            f = { function()
+              vim.lsp.buf.format { async = true }
+            end, 'Format' },
             r = { vim.lsp.buf.rename, 'Rename' },
           },
         }, { noremap = true, silent = true })
