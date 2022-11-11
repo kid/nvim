@@ -34,7 +34,7 @@ require('packer').startup {
       'numToStr/Comment.nvim',
       requires = {},
       config = function()
-        require('Comment').setup { mappings = { extended = true } }
+        require('Comment').setup()
       end,
     }
     use {
@@ -310,12 +310,79 @@ require('packer').startup {
         require('colorizer').setup()
       end,
     }
+    use {
+      'j-hui/fidget.nvim',
+      config = function ()
+        require('fidget').setup()
+      end
+    }
+
+    -- use {
+    --   'williamboman/mason.nvim',
+    --   config = function()
+    --     require('mason').setup()
+    --   end,
+    -- }
+
+
+    use {
+      'VonHeikemen/lsp-zero.nvim',
+      requires = {
+        -- LSP Support
+        { 'neovim/nvim-lspconfig' },
+        { 'williamboman/mason.nvim' },
+        { 'williamboman/mason-lspconfig.nvim' },
+
+        -- Autocompletion
+        { 'hrsh7th/nvim-cmp' },
+        { 'hrsh7th/cmp-buffer' },
+        { 'hrsh7th/cmp-path' },
+        { 'saadparwaiz1/cmp_luasnip' },
+        { 'hrsh7th/cmp-nvim-lsp' },
+        { 'hrsh7th/cmp-nvim-lua' },
+
+        -- Snippets
+        { 'L3MON4D3/LuaSnip' },
+        { 'rafamadriz/friendly-snippets' },
+
+        -- Others
+        { 'windwp/nvim-autopairs' },
+      },
+      config = function ()
+        require('mason').setup()
+        require('mason-lspconfig').setup()
+
+        local lsp = require('lsp-zero')
+        lsp.preset('recommended')
+        -- lsp.preset('system-lsp')
+
+        local cmp = require('cmp')
+        local cmp_mapping = lsp.defaults.cmp_mappings()
+
+        cmp_mapping['<C-h>'] = cmp_mapping['<C-b>']
+        cmp_mapping['<C-l>'] = cmp_mapping['<C-d>']
+        cmp_mapping['<C-y>'] = cmp.mapping.confirm({ select = true })
+        cmp_mapping['<C-n>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select })
+        cmp_mapping['<C-p>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select })
+
+        require('nvim-autopairs').setup()
+        local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+        cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
+
+        lsp.setup_nvim_cmp({
+          mapping = cmp_mapping,
+        })
+
+        lsp.nvim_workspace()
+        lsp.setup()
+      end
+    }
 
     require('vimrc.orgmode')(use)
     require('vimrc.fuzzy')(use)
     require('vimrc.statusline')(use)
-    require('vimrc.lsp')(use)
-    require('vimrc.completion')(use)
+    -- require('vimrc.lsp')(use)
+    -- require('vimrc.completion')(use)
     require('vimrc.treesitter')(use)
 
     vim.api.nvim_command([[autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank()]])
