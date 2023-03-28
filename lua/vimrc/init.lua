@@ -373,6 +373,15 @@ require('packer').startup {
           mapping = cmp_mapping,
         })
 
+        lsp.on_attach(function(client, bufnr)
+          local opts = {buffer = bufnr}
+          local bind = vim.keymap.set
+
+          bind('n', '[d', vim.diagnostic.goto_prev, opts)
+          bind('n', ']d', vim.diagnostic.goto_next, opts)
+          bind('n', 'gl', vim.diagnostic.open_float, opts)
+        end)
+
         lsp.nvim_workspace()
         lsp.setup()
       end
