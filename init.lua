@@ -9,6 +9,7 @@ return {
     servers = {
       "lua_ls",
       "rnix",
+      "nil_ls",
     },
   },
 }
