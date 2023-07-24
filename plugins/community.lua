@@ -15,4 +15,5 @@ return {
   -- { import = "astrocommunity.pack.toml" },
   -- { import = "astrocommunity.pack.yaml" },
   -- { import = "astrocommunity.bars-and-lines.heirline-mode-text-statusline" },
+  { import = "astrocommunity.diagnostics.lsp_lines-nvim" },
 }
