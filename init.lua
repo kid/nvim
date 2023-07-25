@@ -11,5 +11,10 @@ return {
       "rnix",
       "nil_ls",
     },
+    formatting = {
+      disabled = {
+        "tsserver",
+      },
+    },
   },
 }
