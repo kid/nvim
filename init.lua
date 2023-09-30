@@ -1,5 +1,6 @@
 return {
-  colorscheme = "gruvbox",
+  -- colorscheme = "gruvbox",
+  colorscheme = "gruvbox-baby",
   options = {
     opt = {
       clipboard = "",
