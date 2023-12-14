@@ -13,7 +13,7 @@ return {
   { import = "astrocommunity.motion.nvim-surround" },
   { import = "astrocommunity.pack.bash" },
   -- { import = "astrocommunity.pack.lua" },
-  { import = "astrocommunity.pack.terraform" },
+  -- { import = "astrocommunity.pack.terraform" },
   { import = "astrocommunity.pack.rust" },
   -- { import = "astrocommunity.pack.nix" },
   { import = "astrocommunity.git.diffview-nvim" },
@@ -23,4 +23,5 @@ return {
   -- { import = "astrocommunity.pack.yaml" },
   -- { import = "astrocommunity.bars-and-lines.heirline-mode-text-statusline" },
   -- { import = "astrocommunity.diagnostics.lsp_lines-nvim" },
+  { import = "astrocommunity.diagnostics.trouble-nvim" },
 }
